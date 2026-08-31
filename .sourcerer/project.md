@@ -38,3 +38,13 @@ capabilities:
       artwork-selection skill for the art-meme project.
     domains:
       - art-meme
+---
+
+# Art Meme
+
+Map popular meme templates to public-domain fine art with the same emotional
+structure. Output is an agent skill that reads a curated artwork map, picks a
+work using session context, and places labels on its character slots.
+
+See `README.md` for the pipeline (art-first annotation, visceral filter,
+many-to-many mapping) and the validation plan.
