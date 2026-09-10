@@ -1,0 +1,31 @@
+id: fuseli-nightmare
+title: The Nightmare
+artist: Henry Fuseli
+date: 1781
+source:
+  provider: commons
+  asset: "File:John Henry Fuseli - The NightmareFXD.jpg"
+  rights: public-domain
+image: images/fuseli-nightmare.jpg
+image_sha256: null
+what_is_happening: a demon squats on a sleeping woman's chest while a mad-eyed horse watches
+legible_in_2s: true
+content_flags: []
+content_intensity: moderate
+comic_registers: [dark, absurdist, wry]
+targets:
+  - id: sleeper
+    kind: figure
+    subject_point: [0.72, 0.62]
+    label_box: [0.04, 0.86, 0.36, 0.08]
+  - id: incubus
+    kind: figure
+    subject_point: [0.63, 0.16]
+    label_box: [0.04, 0.06, 0.34, 0.08]
+  - id: horse
+    kind: figure
+    subject_point: [0.26, 0.22]
+    label_box: [0.04, 0.36, 0.24, 0.07]
+uses:
+  - structure: the-haunting
+    bindings: { the-sleeper: sleeper, the-incubus: incubus }

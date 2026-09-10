@@ -1,0 +1,27 @@
+id: caravaggio-lizard
+title: Boy Bitten by a Lizard
+artist: Caravaggio
+date: c. 1594-1596
+source:
+  provider: commons
+  asset: "File:Caravaggio - Boy Bitten by a Lizard.jpg"
+  rights: public-domain
+image: images/caravaggio-lizard.jpg
+image_sha256: null
+what_is_happening: a boy recoils in theatrical agony from a tiny lizard biting his finger
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers: [light, hyperbolic, wry]
+targets:
+  - id: boy
+    kind: figure
+    subject_point: [0.50, 0.34]
+    label_box: [0.03, 0.05, 0.26, 0.06]
+  - id: lizard
+    kind: figure
+    subject_point: [0.50, 0.73]
+    label_box: [0.03, 0.88, 0.26, 0.06]
+uses:
+  - structure: disproportionate-pain
+    bindings: { the-bitten: boy, the-tiny-thing: lizard }

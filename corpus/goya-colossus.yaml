@@ -1,0 +1,27 @@
+id: goya-colossus
+title: The Colossus
+artist: Francisco Goya (attr.)
+date: c. 1808-1812
+source:
+  provider: commons
+  asset: "File:The Colossus, Francisco de Goya.jpg"
+  rights: public-domain
+image: images/goya-colossus.jpg
+image_sha256: null
+what_is_happening: a giant rises over the horizon while a valley of tiny figures flees in every direction
+legible_in_2s: true
+content_flags: []
+content_intensity: moderate
+comic_registers: [dark, hyperbolic, absurdist]
+targets:
+  - id: giant
+    kind: figure
+    subject_point: [0.40, 0.22]
+    label_box: [0.68, 0.06, 0.28, 0.06]
+  - id: crowd
+    kind: group
+    subject_point: [0.28, 0.82]
+    label_box: [0.68, 0.88, 0.28, 0.06]
+uses:
+  - structure: the-looming
+    bindings: { the-looming-thing: giant, the-fleeing: crowd }

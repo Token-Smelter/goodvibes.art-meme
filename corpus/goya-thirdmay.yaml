@@ -1,0 +1,27 @@
+id: goya-thirdmay
+title: The Third of May 1808
+artist: Francisco Goya
+date: 1814
+source:
+  provider: commons
+  asset: "File:El Tres de Mayo, by Francisco de Goya, from Prado thin black margin.jpg"
+  rights: public-domain
+image: images/goya-thirdmay.jpg
+image_sha256: null
+what_is_happening: a man in a white shirt throws his arms wide before a faceless firing squad
+legible_in_2s: true
+content_flags: [graphic-violence]
+content_intensity: moderate
+comic_registers: [dark, hyperbolic]
+targets:
+  - id: condemned
+    kind: figure
+    subject_point: [0.33, 0.44]
+    label_box: [0.03, 0.05, 0.28, 0.06]
+  - id: squad
+    kind: group
+    subject_point: [0.72, 0.50]
+    label_box: [0.70, 0.08, 0.27, 0.06]
+uses:
+  - structure: the-reckoning
+    bindings: { the-condemned: condemned, the-squad: squad }

@@ -1,0 +1,33 @@
+id: homer-gulfstream
+title: The Gulf Stream
+artist: Winslow Homer
+date: 1899
+source:
+  provider: commons
+  asset: "File:Winslow Homer - The Gulf Stream - Metropolitan Museum of Art.jpg"
+  rights: public-domain
+image: images/homer-gulfstream.jpg
+image_sha256: null
+what_is_happening: a man reclines almost nonchalantly on a dismasted boat while sharks circle and a ship passes far away
+legible_in_2s: true
+content_flags: [animal-peril]
+content_intensity: moderate
+comic_registers: [wry, deadpan, dark]
+targets:
+  - id: sailor
+    kind: figure
+    subject_point: [0.60, 0.40]
+    label_box: [0.55, 0.05, 0.20, 0.05]
+  - id: sharks
+    kind: group
+    subject_point: [0.47, 0.76]
+    label_box: [0.02, 0.90, 0.24, 0.05]
+  - id: rescue-ship
+    kind: object
+    subject_point: [0.235, 0.115]
+    label_box: [0.32, 0.20, 0.22, 0.05]
+uses:
+  - structure: denial-amid-disaster
+    bindings: { the-oblivious: sailor, the-disaster: sharks }
+  - structure: the-distant-hope
+    bindings: { the-desperate: sailor, the-far-salvation: rescue-ship }

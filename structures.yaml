@@ -1,0 +1,176 @@
+# Emotional structure registry — the matching pivot.
+# Seeded from real session-moment archetypes; famous memes recorded as
+# origin_examples to cross-check that the abstraction preserves their semantics.
+# Growth rule: at ~25 entries build_skill.py warns; additions need merge review.
+
+- id: feral-consumption
+  description: appetite overrides reason; the actor knows it's wrong and cannot stop
+  roles: [the-consumer, the-consumed]
+  origin_examples:
+    - kind: artwork
+      ref: goya-saturn
+
+- id: self-destruction
+  description: the actor damages what is their own, mid-act, aware
+  roles: [the-actor, the-damaged-self]
+  origin_examples:
+    - kind: session
+      ref: "force-pushed over my own uncommitted fix"
+
+- id: temptation-triangle
+  description: committed attention abandoned for a new attraction
+  roles: [the-distracted, the-temptation, the-neglected]
+  origin_examples:
+    - kind: meme
+      ref: distracted-boyfriend
+      bindings: { the-distracted: boyfriend, the-temptation: passing-woman, the-neglected: girlfriend }
+
+- id: denial-amid-disaster
+  description: ordinary activity continues while catastrophe unfolds in frame
+  roles: [the-oblivious, the-disaster]
+  origin_examples:
+    - kind: meme
+      ref: this-is-fine
+      bindings: { the-oblivious: dog, the-disaster: burning-room }
+
+- id: accusation-vs-indifference
+  description: furious accusation meets serene, total unconcern
+  roles: [the-accuser, the-indifferent]
+  origin_examples:
+    - kind: meme
+      ref: woman-yelling-at-cat
+      bindings: { the-accuser: yelling-woman, the-indifferent: cat }
+
+- id: premature-celebration
+  description: triumph declared while the actual outcome is still undecided or already lost
+  roles: [the-celebrant, the-unfinished-business]
+  origin_examples:
+    - kind: session
+      ref: "tests green — the test file was never saved"
+
+- id: fragile-edifice
+  description: something grand rests entirely on one small, ignored, load-bearing detail
+  roles: [the-edifice, the-load-bearing-detail]
+  origin_examples:
+    - kind: meme
+      ref: xkcd-dependency
+      bindings: { the-edifice: all-modern-infrastructure, the-load-bearing-detail: random-person-in-nebraska }
+
+- id: unheeded-warning
+  description: the prophet is right, specific, and completely ignored
+  roles: [the-prophet, the-deaf-audience]
+  origin_examples:
+    - kind: session
+      ref: "the deprecation warning in every CI run since March"
+
+- id: hubris-before-fall
+  description: soaring on borrowed confidence toward a limit everyone else can see
+  roles: [the-ascendant, the-ignored-limit]
+  origin_examples:
+    - kind: artwork
+      ref: fall-of-icarus
+
+- id: escalating-desperation
+  description: each workaround is bigger and stranger than the problem it patches
+  roles: [the-actor, the-original-problem, the-current-workaround]
+  origin_examples:
+    - kind: session
+      ref: "regex → parser → vendored fork → maintainer"
+
+- id: the-haunting
+  description: what you shipped returns at night to sit on your chest
+  roles: [the-sleeper, the-incubus]
+  origin_examples:
+    - kind: artwork
+      ref: fuseli-nightmare
+
+- id: demanded-proof
+  description: refuses to believe it works until the finger is physically in the wound
+  roles: [the-doubter, the-wound]
+  origin_examples:
+    - kind: artwork
+      ref: caravaggio-thomas
+
+- id: the-overwhelm
+  description: everything is too much; pure unfiltered reaction while the world carries on
+  roles: [the-overwhelmed]
+  origin_examples:
+    - kind: artwork
+      ref: munch-scream
+
+- id: the-survey
+  description: standing at the edge, contemplating the vast thing before entering it
+  roles: [the-surveyor, the-expanse]
+  origin_examples:
+    - kind: artwork
+      ref: friedrich-wanderer
+
+- id: the-live-demo
+  description: the demonstration proceeds before an audience; the thing in the jar is not going to make it
+  roles: [the-demonstrator, the-subject, the-mourners]
+  origin_examples:
+    - kind: artwork
+      ref: wright-airpump
+
+- id: grim-necessary-work
+  description: the grim task is executed deliberately, with focus and zero pleasure
+  roles: [the-executor, the-task]
+  origin_examples:
+    - kind: session
+      ref: "deleting the legacy module everyone was afraid of"
+
+- id: the-hustle
+  description: everyone at the table is in on it except the mark
+  roles: [the-hustler, the-mark]
+  origin_examples:
+    - kind: artwork
+      ref: latour-cheat
+
+- id: disproportionate-pain
+  description: a tiny thing bites; the reaction is total
+  roles: [the-bitten, the-tiny-thing]
+  origin_examples:
+    - kind: session
+      ref: "one-character typo, forty-minute debugging spiral"
+
+- id: struck-down-mid-work
+  description: fallen at the desk, pen still in hand, the last message unsent
+  roles: [the-fallen, the-final-message]
+  origin_examples:
+    - kind: artwork
+      ref: david-marat
+
+- id: the-distant-hope
+  description: everyone waves desperately at the tiny thing on the horizon that may not have seen them
+  roles: [the-desperate, the-far-salvation]
+  origin_examples:
+    - kind: artwork
+      ref: gericault-medusa
+
+- id: the-grand-project
+  description: the magnificent thing under construction that everyone privately knows will never be finished
+  roles: [the-project, the-management]
+  origin_examples:
+    - kind: artwork
+      ref: bruegel-babel
+
+- id: the-reckoning
+  description: standing before the squad; the outcome is not in doubt, only the timing
+  roles: [the-condemned, the-squad]
+  origin_examples:
+    - kind: artwork
+      ref: goya-thirdmay
+
+- id: the-looming
+  description: the enormous thing has appeared on the horizon and everyone below is fleeing
+  roles: [the-looming-thing, the-fleeing]
+  origin_examples:
+    - kind: artwork
+      ref: goya-colossus
+
+- id: the-eternal-task
+  description: carrying the boulder up the hill again, knowing it comes back down
+  roles: [the-laborer, the-burden]
+  origin_examples:
+    - kind: artwork
+      ref: titian-sisyphus

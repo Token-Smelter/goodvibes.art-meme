@@ -1,0 +1,27 @@
+id: bosch-stone
+title: Cutting the Stone (The Extraction of the Stone of Madness)
+artist: Hieronymus Bosch
+date: c. 1494-1516
+source:
+  provider: commons
+  asset: "File:Cutting the Stone (Bosch).jpg"
+  rights: public-domain
+image: images/bosch-stone.jpg
+image_sha256: null
+what_is_happening: a quack in a funnel hat performs head surgery on a trusting patient while accomplices look on
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers: [absurdist, wry, dark]
+targets:
+  - id: surgeon
+    kind: figure
+    subject_point: [0.26, 0.40]
+    label_box: [0.38, 0.30, 0.24, 0.05]
+  - id: patient
+    kind: figure
+    subject_point: [0.36, 0.46]
+    label_box: [0.60, 0.72, 0.25, 0.05]
+uses:
+  - structure: the-hustle
+    bindings: { the-hustler: surgeon, the-mark: patient }

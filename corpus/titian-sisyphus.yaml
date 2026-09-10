@@ -1,0 +1,27 @@
+id: titian-sisyphus
+title: Sisyphus
+artist: Titian
+date: 1548-1549
+source:
+  provider: commons
+  asset: "File:Titian - Sisyphus - Madrid - Prado.jpg"
+  rights: public-domain
+image: images/titian-sisyphus.jpg
+image_sha256: null
+what_is_happening: Sisyphus hauls an enormous boulder up a hellish slope, head bowed under its weight
+legible_in_2s: true
+content_flags: []
+content_intensity: moderate
+comic_registers: [dark, wry, hyperbolic]
+targets:
+  - id: sisyphus
+    kind: figure
+    subject_point: [0.50, 0.60]
+    label_box: [0.03, 0.90, 0.26, 0.05]
+  - id: boulder
+    kind: object
+    subject_point: [0.58, 0.14]
+    label_box: [0.03, 0.06, 0.24, 0.06]
+uses:
+  - structure: the-eternal-task
+    bindings: { the-laborer: sisyphus, the-burden: boulder }

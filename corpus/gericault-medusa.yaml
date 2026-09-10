@@ -1,0 +1,31 @@
+id: gericault-medusa
+title: The Raft of the Medusa
+artist: Théodore Géricault
+date: 1818-1819
+source:
+  provider: commons
+  asset: "File:JEAN LOUIS THÉODORE GÉRICAULT - La Balsa de la Medusa (Museo del Louvre, 1818-19).jpg"
+  rights: public-domain
+image: images/gericault-medusa.jpg
+image_sha256: null
+what_is_happening: shipwreck survivors on a raft wave desperately at a tiny ship on the horizon
+legible_in_2s: true
+content_flags: [violence-aftermath]
+content_intensity: moderate
+comic_registers: [dark, hyperbolic]
+targets:
+  - id: wavers
+    kind: group
+    subject_point: [0.70, 0.25]
+    label_box: [0.75, 0.04, 0.22, 0.06]
+  - id: ship
+    kind: object
+    subject_point: [0.875, 0.405]
+    label_box: [0.78, 0.50, 0.19, 0.05]
+  - id: despair
+    kind: figure
+    subject_point: [0.28, 0.62]
+    label_box: [0.02, 0.88, 0.24, 0.06]
+uses:
+  - structure: the-distant-hope
+    bindings: { the-desperate: wavers, the-far-salvation: ship }

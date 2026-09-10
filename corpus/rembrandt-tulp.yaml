@@ -1,0 +1,31 @@
+id: rembrandt-tulp
+title: The Anatomy Lesson of Dr Nicolaes Tulp
+artist: Rembrandt
+date: 1632
+source:
+  provider: commons
+  asset: "File:Rembrandt - The Anatomy Lesson of Dr Nicolaes Tulp.jpg"
+  rights: public-domain
+image: images/rembrandt-tulp.jpg
+image_sha256: null
+what_is_happening: the doctor demonstrates on the corpse while colleagues lean in with intense professional interest
+legible_in_2s: true
+content_flags: [graphic-violence]
+content_intensity: moderate
+comic_registers: [deadpan, dark, wry]
+targets:
+  - id: tulp
+    kind: figure
+    subject_point: [0.70, 0.35]
+    label_box: [0.72, 0.06, 0.25, 0.06]
+  - id: corpse
+    kind: figure
+    subject_point: [0.50, 0.73]
+    label_box: [0.03, 0.90, 0.24, 0.05]
+  - id: students
+    kind: group
+    subject_point: [0.40, 0.38]
+    label_box: [0.03, 0.05, 0.24, 0.06]
+uses:
+  - structure: the-live-demo
+    bindings: { the-demonstrator: tulp, the-subject: corpse, the-mourners: students }

@@ -1,0 +1,31 @@
+id: chardin-cards
+title: The House of Cards
+artist: Jean Siméon Chardin
+date: c. 1737
+source:
+  provider: commons
+  asset: "File:Jean Siméon Chardin, The House of Cards, probably 1737, NGA 97.jpg"
+  rights: public-domain
+image: images/chardin-cards.jpg
+image_sha256: null
+what_is_happening: a child calmly adds one more card to a structure that exists entirely at the mercy of the next card
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers: [deadpan, light, wry]
+targets:
+  - id: cardhouse
+    kind: object
+    subject_point: [0.10, 0.70]
+    label_box: [0.03, 0.08, 0.24, 0.05]
+  - id: builder
+    kind: figure
+    subject_point: [0.50, 0.30]
+    label_box: [0.70, 0.10, 0.26, 0.05]
+  - id: hand-card
+    kind: object
+    subject_point: [0.31, 0.64]
+    label_box: [0.60, 0.80, 0.28, 0.05]
+uses:
+  - structure: fragile-edifice
+    bindings: { the-edifice: cardhouse, the-load-bearing-detail: hand-card }
