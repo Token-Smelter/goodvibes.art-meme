@@ -7,7 +7,7 @@ description: Respond to a session moment with a fine-art meme — a public-domai
 
 **BLUF:** Distill the moment into an emotional structure, filter the corpus with `tools/match.py` (hard gates in code), pick the funniest fit, write ≤5-word labels mapping session entities to the painting's figures, render with `tools/render.py`, and show the image. If nothing fits, say so — never force a pick.
 
-All paths below are relative to this skill's directory.
+All paths below are relative to this skill's directory. The package contains code and annotations, not artwork files. Internet access is needed for each image's first download; verified cached images work offline.
 
 ## Pipeline
 
@@ -17,18 +17,30 @@ All paths below are relative to this skill's directory.
    uv run tools/match.py --structures <id,id> [--exclude-flags <flag,flag>]
    ```
    Empty result → **abstain**: tell the user no artwork fits that structure, offer the nearest structures that do exist. Do not stretch a wrong painting.
-3. **Pick** from the survivors: best structural fit first, then register fit. Intensity mismatch is allowed and often *is* the joke (Saturn for a trivial dependency bump). Repeating a recently used work is worse than a slightly weaker fit.
+3. **Pick** from the survivors: best structural fit first, then register fit. Intensity mismatch is allowed and often *is* the joke (Saturn for a trivial dependency bump). Repeating a recently used work is worse than a slightly weaker fit. Fetch the chosen original for visual inspection:
+   ```bash
+   uv run tools/get_image.py <artwork-id>
+   ```
+   Read the local `path` from the returned JSON to inspect the image. This resolves the recorded Commons file, never an artwork search. Source unavailability is a download failure, not `no_match`; report it without silently substituting another reproduction.
 4. **Label**: ≤5 words per target, mapping real session entities to bound targets. Unbound targets may also be labeled when funny. Optional `caption` (strip above the canvas) — but if the caption must explain the joke, the pick is wrong.
 5. **Render**:
    ```bash
    echo '{"artwork":"<id>","labels":{"<target>":"<text>"},"style":"placard","out":"/tmp/art-meme/<name>.jpg"}' | uv run tools/render.py
    ```
    Styles: `placard` (default, museum small-caps) or `blunt` (heavy meme sans). Then display the output image to the user (read tool).
-6. **Credit** is rendered automatically — never crop it off.
+6. **Credit** is rendered automatically — never crop it off. Rendering uses the same image cache as `get_image.py`.
+
+## Image cache
+
+- Default: `${XDG_CACHE_HOME:-~/.cache}/art-meme`; override with `ART_MEME_CACHE_DIR`.
+- Cache records include source page/download URLs, declared rights, and SHA-256; bytes are checked on every reuse. A mismatch fails with a `--refresh` instruction.
+- `uv run tools/get_image.py <artwork-id> --refresh` explicitly re-downloads the recorded file. First downloads and refreshes use the current source image; no historical revision pin or promise of byte-identity to an old authoring thumbnail.
+- Source rights must be annotated `public-domain` or `cc0`. These are declarations, not automated legal verification. Keep the source link with shared context and preserve the image credit.
+- If rendering reports missing fonts, install DejaVu (Linux), or provide `fonts/serif.ttf` and `fonts/sans-bold.ttf`. Georgia/Arial system fonts are also supported on macOS/Windows.
 
 ## Rules
 
 - Abstention is success, not failure. Forcing a meme is the worst outcome.
 - Never alter the artwork beyond label compositing; never skip the credit strip.
 - Labels name the user's entities, not generic ones, whenever context provides them.
-- On a dud (wrong structure, dead joke, bad placement): append one line to `~/development/miscellaneous/art-meme/misses.md` naming the moment, the pick, and which layer died (ontology / corpus gap / labels / render). That file drives corpus growth.
+- On a dud (wrong structure, dead joke, bad placement): append one line to `misses.md` in the image cache directory (create it if needed), naming the moment, the pick, and the suspected failing layer (ontology / corpus gap / labels / render). This keeps feedback local without requiring a source checkout.

@@ -29,7 +29,7 @@ Unpacked:
 | Label style | Two styles implemented (placard serif, blunt high-contrast sans); default chosen by blind comparison in Phase 0 | Declaring placard the default by assertion |
 | Meme map | Origin examples recorded inside `structures.yaml`; no separate memes file | `memes.yaml` (too thin to validate anything, too prominent to ignore) |
 | Licensing | CC0 / PD only (Met, AIC, Commons); store provider asset id + rights statement + image checksum | Free-form `license: PD` string (unenforceable) |
-| Images | Local ~1600px copy, checksummed; skill dir generated atomically from corpus | Fetch-at-use; hand-synced image copies (drift) |
+| Images | Code/annotations only in shared skill; resolve exact Commons file on first use, cache with SHA-256; optional local authoring copies | Bundled artwork files or separate asset hosting |
 | Structure count | Warning + merge review at ~25 | Hard cap (forces genuinely new structures into wrong buckets) |
 
 ## System overview
@@ -40,9 +40,9 @@ flowchart TB
         Moments["Real session moments<br/>frozen first"] --> Registry["structures.yaml<br/>seeded from moments,<br/>memes as cross-check"]
         Pick["Hand-pick artworks<br/>Commons · Met · AIC"] --> Filter["Legibility + labelability filter<br/>judged on rendered artifact"]
         Filter --> Annotate["Annotate targets, boxes,<br/>structure bindings"]
-        Annotate --> Corpus["corpus/*.yaml + images/"]
+        Annotate --> Corpus["corpus/*.yaml + optional local images/"]
         Registry --> Corpus
-        Corpus --> Build["build_skill.py<br/>validate · coverage matrix · checksums"]
+        Corpus --> Build["build_skill.py<br/>validate · coverage · metadata-only package"]
         Build --> Index["skill/index.yaml"]
     end
 
@@ -54,7 +54,8 @@ flowchart TB
         Empty -->|none| Abstain["no_match — valid result"]
         Empty -->|1..15| Rerank["LLM: rerank, pick, write labels"]
         Rerank --> Validate["Code: schema-validate ids"]
-        Validate --> Render["render.py → image + credit"]
+        Validate --> Cache["Exact source file → verified local cache"]
+        Cache --> Render["render.py → image + credit"]
     end
 ```
 
@@ -98,7 +99,7 @@ source:
   asset: "File:Francisco de Goya, Saturno devorando a su hijo (1819-1823).jpg"
   rights: public-domain
 image: images/goya-saturn.jpg
-image_sha256: <stamped by build_skill.py>
+image_sha256: null           # optional authoring-copy hash; omitted from package
 what_is_happening: a giant frantically eats a human body
 legible_in_2s: true            # judged on the RENDERED artifact at target width, not the raw painting
 content_flags: [graphic-violence]
@@ -120,7 +121,9 @@ uses:
     bindings: { the-actor: saturn, the-damaged-self: victim }
 ```
 
-Build-time checks: every `uses[].structure` exists; every binding covers all its structure's roles with declared target ids; every target referenced by a binding exists; image checksum matches.
+Build-time checks: every `uses[].structure` exists; every binding covers all its structure's roles with declared target ids; every target referenced by a binding exists; source declares an exact Commons file and public-domain/CC0 rights. Build needs no images or network.
+
+Image distribution: `get_image.py` resolves the recorded file via Commons imageinfo (no search), downloads a thumbnail or original, validates JPEG/PNG content, and stores it in the user's cache with source URLs and SHA-256. Cached bytes are verified before reuse. A corrupt cache fails until explicitly refreshed. First use/refresh trusts the current recorded source, not a historical revision or an old authoring-thumbnail hash; byte-identical encoding is not required for normalized coordinates. Local authoring copies remain optional and are never included in the generated skill. No cropping is performed. Rights declarations are not automated legal verification.
 
 **Labelability filter** (in addition to 2-second legibility, both judged on the rendered artifact at target width): each intended target independently identifiable; labels placeable without covering faces or the key action; label→target association unambiguous; joke understandable without explanatory prose. Phase 0/1 exclusions: crowds, tiny background protagonists, >4 required targets, adjacent look-alike figures, works whose meaning requires iconography or title knowledge.
 
@@ -150,7 +153,7 @@ Build-time checks: every `uses[].structure` exists; every binding covers all its
 | Styles | `placard` (serif small-caps on scrim) and `blunt` (heavy sans, dark outline); default decided by blind side-by-side in Phase 0 |
 | Caption | Optional strip appended **above** the canvas |
 | Credit | Strip appended **below** the canvas: artist — title (date); never over the artwork |
-| Fonts | Bundled in `skill/fonts/` with licenses; system-font fallback only in dev |
+| Fonts | System DejaVu/Georgia/Arial, or optional user-supplied `fonts/` files; fail clearly if unavailable. Fonts are not bundled. |
 
 ## Repository layout
 
@@ -161,18 +164,21 @@ art-meme/
   structures.yaml
   corpus/
     goya-saturn.yaml
-    images/goya-saturn.jpg
+    images/goya-saturn.jpg  # optional authoring cache; ignored by Git
   tools/
-    fetch_commons.py        # resolve a Commons search → cached 1600px image + provenance
+    fetch_commons.py        # authoring search only; not included in shared skill
+    get_image.py            # exact source resolution + verified user cache
     render.py               # also the dev renderer; copied into skill/ at build
-    build_skill.py          # validate + coverage matrix + checksums → skill/ atomically
+    build_skill.py          # annotations + tools + coverage → image-free skill/
   reviews/
   skill/                    # GENERATED — never hand-edited
     SKILL.md
     index.yaml
-    render.py
-    fonts/
-    images/
+    corpus/*.yaml
+    tools/get_image.py
+    tools/match.py
+    tools/render.py
+    fonts/                 # optional local fonts, not generated
 ```
 
 Anchors and boxes are drafted by vision inspection plus a test-render loop (worked for Goya); a click-annotation tool gets built only if that proves too slow. Bulk provider pipelines (Met CSV etc.) are Phase 2; seed artworks are hand-picked.
@@ -182,12 +188,12 @@ Anchors and boxes are drafted by vision inspection plus a test-render loop (work
 | Phase | Output |
 |---|---|
 | 0 — Seed build | `structures.yaml` (done, grows as works demand); ~15–20 hand-picked works fetched + annotated; `render.py` (done); label-style default picked from side-by-sides during annotation |
-| 1 — Skill | Constrained matcher; `build_skill.py` packaging with checksums + coverage matrix; `SKILL.md`; installed and invocable |
+| 1 — Skill | Constrained matcher; image-free packaging + coverage matrix; source downloads with cache integrity; `SKILL.md`; installed and invocable |
 | 2 — Live iteration | Real use; misses logged and fixed; corpus grows where gaps appear; provider automation only when hand-sourcing bottlenecks; retrieval infra only when index size measurably hurts |
 
 ### Iteration loop (replaces formal validation)
 
-Every dud output gets one line in `misses.md`: the moment, the pick, and which layer died — ontology (wrong structure), corpus gap (no good work), labels (right work, dead words), or render (right everything, unreadable). Fix at the named layer; keep the fixed case as a regression fixture to re-render after later changes. A caption that has to explain the joke counts as a corpus miss, not a save.
+Every dud output gets one line in the user's image-cache `misses.md` (historical development notes remain in the source-root file): the moment, the pick, and which layer died — ontology (wrong structure), corpus gap (no good work), labels (right work, dead words), or render (right everything, unreadable). Fix at the named layer; keep the fixed case as a regression fixture to re-render after later changes. A caption that has to explain the joke counts as a corpus miss, not a save.
 
 ## Risks
 
@@ -198,8 +204,8 @@ Every dud output gets one line in `misses.md`: the moment, the pick, and which l
 | Anchor/box annotation tedious | High-friction | `annotate.html` click tool; boxes + points only, ~60s per work |
 | Placard style reads as museum education, not humor | Embarrassing default | Both styles rendered in Phase 0; blind choice |
 | No formal gate — an unfunny corpus is discovered only in use | Sunk annotation time | Corpus capped ~20 until picks land; per-work annotation cost kept to minutes |
-| Skill/corpus drift | Stale packaged images or index | `skill/` generated atomically with checksums; never hand-edited |
-| Image link rot | Broken skill | Local checksummed copies; source URL is provenance only |
+| Skill/corpus drift | Stale generated annotations/index | `skill/` generated from source; never hand-edited |
+| Source unavailability or replacement | First download fails or current reproduction differs | Exact file ID; bounded retries; verified offline cache; explicit refresh, no search substitute. Historical source pinning deferred. |
 
 ## Non-goals
 

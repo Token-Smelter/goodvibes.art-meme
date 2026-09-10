@@ -1,21 +1,21 @@
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["pyyaml>=6"]
+# dependencies = ["pyyaml>=6", "pillow>=10"]
 # ///
 """Validate the corpus and generate the skill/ directory atomically.
 
 Checks: every uses[].structure exists; bindings cover all roles with declared
-target ids; image files exist. Stamps image_sha256. Emits coverage matrix.
-skill/ is GENERATED — never hand-edited.
+target ids; exact downloadable source identifiers exist. Emits coverage matrix.
+Images stay outside the package. skill/ is GENERATED — never hand-edited.
 """
-import hashlib
 import json
 import shutil
 import sys
-from datetime import date
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
+from get_image import ImageError, validate_source
 
 REPO = Path(__file__).resolve().parent.parent
 STRUCTURE_WARN = 25
@@ -40,11 +40,12 @@ def main():
         wid = w.get("id", path.stem)
         if wid != path.stem:
             errors.append(f"{path.name}: id {wid!r} != filename")
-        img = REPO / "corpus" / w["image"]
-        if not img.exists():
-            errors.append(f"{wid}: missing image {w['image']}")
-        else:
-            w["image_sha256"] = hashlib.sha256(img.read_bytes()).hexdigest()
+        try:
+            validate_source(w.get("source"))
+        except ImageError as exc:
+            errors.append(f"{wid}: {exc}")
+        # Authoring-copy hashes cannot validate independently encoded thumbnails.
+        w.pop("image_sha256", None)
         target_ids = {t["id"] for t in w.get("targets", [])}
         for t in w.get("targets", []):
             if not (len(t.get("subject_point", [])) == 2 and
@@ -76,18 +77,18 @@ def main():
 
     tmp = REPO / "skill.tmp"
     shutil.rmtree(tmp, ignore_errors=True)
-    (tmp / "corpus/images").mkdir(parents=True)
+    (tmp / "corpus").mkdir(parents=True)
     (tmp / "tools").mkdir()
 
     for w in works:
         (tmp / "corpus" / f"{w['id']}.yaml").write_text(
             yaml.safe_dump(w, sort_keys=False, allow_unicode=True))
-        shutil.copy2(REPO / "corpus" / w["image"], tmp / "corpus" / w["image"])
     (tmp / "index.yaml").write_text(yaml.safe_dump({
-        "generated": date.today().isoformat(),
+        "generated": datetime.now(UTC).date().isoformat(),
         "structures": list(structures.values()),
         "works": works,
     }, sort_keys=False, allow_unicode=True))
+    shutil.copy2(REPO / "tools/get_image.py", tmp / "tools/get_image.py")
     shutil.copy2(REPO / "tools/render.py", tmp / "tools/render.py")
     shutil.copy2(REPO / "tools/match.py", tmp / "tools/match.py")
     shutil.copy2(REPO / "tools/SKILL.template.md", tmp / "SKILL.md")

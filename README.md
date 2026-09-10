@@ -4,6 +4,37 @@ Replace generic meme templates with fine art carrying the same emotional
 payload. Goya's *Saturn Devouring His Son* is the seed example: it already IS
 a meme — feral consumption, wide-eyed guilt — painted by a master.
 
+## Build and share
+
+The generated `skill/` directory contains code and annotations, **no artwork images**. Images download directly from recorded Wikimedia Commons files and are cached locally; no separate image hosting or Git LFS is needed.
+
+```bash
+uv run tools/build_skill.py
+# Share the generated skill/ directory, or build it from a source checkout.
+cd skill
+uv run tools/get_image.py titian-sisyphus
+printf '%s\n' '{"artwork":"titian-sisyphus","labels":{"sisyphus":"me","boulder":"the weekly status report"},"out":"/tmp/sisyphus.jpg"}' | uv run tools/render.py
+```
+
+The image command returns a local `path` for inspection and provenance. Rendering downloads automatically if needed. Downloads use the **exact recorded Commons filename**, not the authoring search helper. Cache hits work offline; unavailable files and checksum mismatches produce actionable errors, not search substitutions. First downloads use the current Commons version; source revisions are not pinned.
+
+| Setting | Behavior |
+|---|---|
+| Cache | `${XDG_CACHE_HOME:-~/.cache}/art-meme`, or `ART_MEME_CACHE_DIR` |
+| Integrity | SHA-256 recorded on download and verified on every cache reuse |
+| Refresh | `uv run tools/get_image.py <id> --refresh` bypasses local/cache copies |
+| Authoring | Existing `corpus/images/` copies remain usable locally but are ignored by Git and never packaged |
+| Rights | Annotations declare public-domain or CC0; preserve source links and rendered credit. This is not automated legal verification. |
+| Fonts | DejaVu on Linux; Georgia/Arial on macOS/Windows; or `fonts/serif.ttf` and `fonts/sans-bold.ttf` in the skill |
+
+Checks (no network needed):
+
+```bash
+uv run --with pillow --with pyyaml python -m unittest discover -s tests -v
+```
+
+The concept notes below predate the implemented `targets`/`uses` schema; consult `corpus/*.yaml` and `tools/` for current behavior.
+
 ## Output form
 
 An **agent skill**, not a static pack. The skill:

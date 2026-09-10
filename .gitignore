@@ -1,0 +1,10 @@
+.worktrees/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+/corpus/images/
+/skill/
+/skill.tmp/
+/out/

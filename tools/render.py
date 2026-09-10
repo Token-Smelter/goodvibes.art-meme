@@ -17,7 +17,7 @@ import json
 import sys
 from pathlib import Path
 
-import yaml
+from get_image import ImageError, get_image, load_artwork
 from PIL import Image, ImageDraw, ImageFont
 
 REPO = Path(__file__).resolve().parent.parent
@@ -27,12 +27,18 @@ FONT_START = 52
 MAX_LINES = 2
 
 SERIF_CANDIDATES = [
+    REPO / "fonts/serif.ttf",
     REPO / "skill/fonts/serif.ttf",
+    Path("/System/Library/Fonts/Supplemental/Georgia.ttf"),
+    Path("C:/Windows/Fonts/georgia.ttf"),
     Path("/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"),
     Path("/usr/share/fonts/TTF/DejaVuSerif.ttf"),
 ]
 SANS_CANDIDATES = [
+    REPO / "fonts/sans-bold.ttf",
     REPO / "skill/fonts/sans-bold.ttf",
+    Path("/System/Library/Fonts/Supplemental/Arial Bold.ttf"),
+    Path("C:/Windows/Fonts/arialbd.ttf"),
     Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
     Path("/usr/share/fonts/TTF/DejaVuSans-Bold.ttf"),
 ]
@@ -42,7 +48,7 @@ def find_font(candidates: list[Path]) -> Path:
     for p in candidates:
         if p.exists():
             return p
-    sys.exit("render.py: no usable font found; bundle one in skill/fonts/")
+    sys.exit("render.py: no usable font found; install DejaVu fonts or provide fonts/serif.ttf and fonts/sans-bold.ttf")
 
 
 def load_font(path: Path, size: int) -> ImageFont.FreeTypeFont:
@@ -141,9 +147,13 @@ def text_strip(width, text, font_path, size, bg, fg, upper=False):
 def main():
     spec = json.load(sys.stdin)
     style = spec.get("style", "placard")
-    art = yaml.safe_load((REPO / "corpus" / f"{spec['artwork']}.yaml").read_text())
+    try:
+        art = load_artwork(REPO, spec["artwork"])
+        image = get_image(art, root=REPO)
+    except (ImageError, OSError) as exc:
+        raise SystemExit(f"render.py: {exc}") from exc
 
-    img = Image.open(REPO / "corpus" / art["image"]).convert("RGBA")
+    img = Image.open(image["path"]).convert("RGBA")
     if max(img.size) > MAX_WIDTH:
         scale = MAX_WIDTH / max(img.size)
         img = img.resize((round(img.width * scale), round(img.height * scale)),
