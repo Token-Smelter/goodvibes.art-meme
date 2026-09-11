@@ -1,6 +1,6 @@
 # [GoodVibes] Art Meme
 
-Turn a conversation moment into a fine-art meme: a public-domain painting, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/TokenSmelter)**.
+Turn a conversation moment into a fine-art meme: a public-domain painting, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/Token-Smelter)**.
 
 ```mermaid
 flowchart LR
@@ -15,14 +15,14 @@ flowchart LR
 Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3.11+, and an agent that supports `SKILL.md` skills. Images need internet access on first use; cached images work offline. uv installs the Python dependencies when each script runs.
 
 ```bash
-git clone https://github.com/TokenSmelter/goodvibes.art-meme.git
+git clone https://github.com/Token-Smelter/goodvibes.art-meme.git
 cd goodvibes.art-meme
 uv run tools/build_skill.py
 ```
 
 Copy the generated **`skill/`** directory into your agent's skills directory under the name **`art-meme`**. For Claude Code, use `~/.claude/skills/art-meme/`. If already installed, back it up before replacing it. The repo has a collection prefix; the installed skill name remains `art-meme`.
 
-Alternatively, download the image-free skill ZIP from [Releases](https://github.com/TokenSmelter/goodvibes.art-meme/releases) and extract its `art-meme/` directory there.
+Alternatively, download the image-free skill ZIP from [Releases](https://github.com/Token-Smelter/goodvibes.art-meme/releases) and extract its `art-meme/` directory there.
 
 Then ask your agent:
 
