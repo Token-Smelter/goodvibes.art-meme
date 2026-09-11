@@ -35,6 +35,8 @@ def main():
               "review for synonym proliferation", file=sys.stderr)
 
     errors, works = [], []
+    if not (REPO / "LICENSE").is_file():
+        errors.append("missing LICENSE required for distribution")
     for path in sorted((REPO / "corpus").glob("*.yaml")):
         w = yaml.safe_load(path.read_text())
         wid = w.get("id", path.stem)
@@ -88,6 +90,7 @@ def main():
         "structures": list(structures.values()),
         "works": works,
     }, sort_keys=False, allow_unicode=True))
+    shutil.copy2(REPO / "LICENSE", tmp / "LICENSE")
     shutil.copy2(REPO / "tools/get_image.py", tmp / "tools/get_image.py")
     shutil.copy2(REPO / "tools/render.py", tmp / "tools/render.py")
     shutil.copy2(REPO / "tools/match.py", tmp / "tools/match.py")

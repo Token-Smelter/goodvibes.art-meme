@@ -1,106 +1,81 @@
-# art-meme
+# [GoodVibes] Art Meme
 
-Replace generic meme templates with fine art carrying the same emotional
-payload. Goya's *Saturn Devouring His Son* is the seed example: it already IS
-a meme — feral consumption, wide-eyed guilt — painted by a master.
+Turn a conversation moment into a fine-art meme: a public-domain painting, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/TokenSmelter)**.
 
-## Build and share
+```mermaid
+flowchart LR
+    Moment["Your conversation"] --> Match["Match an emotional structure"]
+    Match --> Pick["Choose an artwork or abstain"]
+    Pick --> Image["Fetch the recorded source and cache it"]
+    Image --> Render["Labels + artwork + credit"]
+```
 
-The generated `skill/` directory contains code and annotations, **no artwork images**. Images download directly from recorded Wikimedia Commons files and are cached locally; no separate image hosting or Git LFS is needed.
+## Install
+
+Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3.11+, and an agent that supports `SKILL.md` skills. Images need internet access on first use; cached images work offline. uv installs the Python dependencies when each script runs.
 
 ```bash
+git clone https://github.com/TokenSmelter/goodvibes.art-meme.git
+cd goodvibes.art-meme
 uv run tools/build_skill.py
-# Share the generated skill/ directory, or build it from a source checkout.
-cd skill
+```
+
+Copy the generated **`skill/`** directory into your agent's skills directory under the name **`art-meme`**. For Claude Code, use `~/.claude/skills/art-meme/`. If already installed, back it up before replacing it. The repo has a collection prefix; the installed skill name remains `art-meme`.
+
+Alternatively, download the image-free skill ZIP from [Releases](https://github.com/TokenSmelter/goodvibes.art-meme/releases) and extract its `art-meme/` directory there.
+
+Then ask your agent:
+
+> Make a fine-art meme of me dealing with the weekly status report.
+
+The agent chooses from the curated corpus, inspects the image, writes labels, and renders a JPEG. If no painting fits, it should say so rather than force a joke. Invoke it explicitly; it does not post messages or publish images for you.
+
+## Try the renderer directly
+
+From the generated `skill/` directory:
+
+```bash
 uv run tools/get_image.py titian-sisyphus
 printf '%s\n' '{"artwork":"titian-sisyphus","labels":{"sisyphus":"me","boulder":"the weekly status report"},"out":"/tmp/sisyphus.jpg"}' | uv run tools/render.py
 ```
 
-The image command returns a local `path` for inspection and provenance. Rendering downloads automatically if needed. Downloads use the **exact recorded Commons filename**, not the authoring search helper. Cache hits work offline; unavailable files and checksum mismatches produce actionable errors, not search substitutions. First downloads use the current Commons version; source revisions are not pinned.
+The image command returns a local `path` for inspection and source provenance. The renderer also downloads automatically when needed. It keeps the full composition, adds labels without cropping, and appends artist/title/date below the canvas.
+
+## Images stay outside the package
+
+The repository and generated skill distribute **code and annotations, not artwork files**. Downloads resolve the exact recorded Wikimedia Commons filename, never a new artwork search.
 
 | Setting | Behavior |
 |---|---|
 | Cache | `${XDG_CACHE_HOME:-~/.cache}/art-meme`, or `ART_MEME_CACHE_DIR` |
 | Integrity | SHA-256 recorded on download and verified on every cache reuse |
 | Refresh | `uv run tools/get_image.py <id> --refresh` bypasses local/cache copies |
-| Authoring | Existing `corpus/images/` copies remain usable locally but are ignored by Git and never packaged |
-| Rights | Annotations declare public-domain or CC0; preserve source links and rendered credit. This is not automated legal verification. |
-| Fonts | DejaVu on Linux; Georgia/Arial on macOS/Windows; or `fonts/serif.ttf` and `fonts/sans-bold.ttf` in the skill |
+| Source changes | First downloads/refreshes use the current Commons file; historical revisions are not pinned |
+| Failures | Unavailable sources and corrupt cache entries produce errors, not search substitutions |
+| Fonts | System DejaVu on Linux, Georgia/Arial on macOS/Windows, or user-supplied `fonts/serif.ttf` and `fonts/sans-bold.ttf` |
 
-Checks (no network needed):
+## Extend it
+
+- **`structures.yaml`** defines reusable relations between roles.
+- **`corpus/*.yaml`** identifies artworks, label geometry, and each artwork's role bindings through `uses[]`. Mapping is many-to-many.
+- **`tools/SKILL.template.md`** supplies the agent instructions.
+- **`tools/build_skill.py`** generates the shareable skill. Never hand-edit `skill/`.
+- **`tools/fetch_commons.py`** is an authoring search helper, not a runtime dependency. Optional local `corpus/images/` copies are ignored by Git and never packaged.
+
+Inspect the original and a test render when adding or changing an annotation. Existing structural matches and label placement are experimental; a successful build is not proof that a joke lands. See [DESIGN.md](./DESIGN.md) for design context, including aspirational behavior not yet enforced by the scripts.
+
+## Check
 
 ```bash
 uv run --with pillow --with pyyaml python -m unittest discover -s tests -v
+uvx ruff check tools tests --select F --ignore E402
+uv run tools/build_skill.py
 ```
 
-The concept notes below predate the implemented `targets`/`uses` schema; consult `corpus/*.yaml` and `tools/` for current behavior.
+The tests use generated fixtures and an external cache; they do not download artwork. uv may need a network connection to obtain dependencies on its first run.
 
-## Output form
+## License
 
-An **agent skill**, not a static pack. The skill:
+Code and original project documentation/annotations are available under the [MIT License](./LICENSE). Use, modify, redistribute, and sell them; retain the copyright and license notice. No warranty is provided.
 
-1. reads a curated artwork map (built offline, below)
-2. uses session context to pick the artwork whose emotional structure fits
-3. adds labels/captions positioned on the artwork's character slots
-
-## Pipeline (art-first, not meme-first)
-
-Annotate the art corpus once; memes match against the index forever. The meme
-side churns monthly; the art side is fixed and appreciates.
-
-```mermaid
-flowchart LR
-  A["Open-access corpora<br/>Met · Rijks · AIC · Commons"] --> B["Visceral filter<br/>legible in 2s or OUT"]
-  B --> C["Annotate<br/>happening · tenor · characters/roles"]
-  C --> D["Artwork index"]
-  E["Top-100 memes<br/>emotional structures"] --> F["Mapping<br/>many-to-many"]
-  D --> F
-  F --> G["Skill: session context -> pick artwork -> place labels"]
-```
-
-**Visceral filter:** artwork qualifies only if a stranger reads *what is
-happening* in two seconds — who wants what, who's winning, who's horrified.
-Ambiguity = off the table. This is the meme-slot constraint made operational.
-
-## Annotation schema (draft)
-
-```yaml
-artwork: Saturn Devouring His Son
-artist: Goya
-what_is_happening: a giant frantically eats a human body
-emotional_tenor: [horror, compulsion, guilt, cannot-stop]
-characters:
-  - role: the consumer      # slot A — wide-eyed, mid-act, aware it's wrong
-  - role: the consumed      # slot B — passive, already lost
-legible_in_2s: yes
-meme_slots: [doing-the-thing-you-know-is-bad, devouring, self-destruction]
-```
-
-`characters[].role` is load-bearing: it's what the skill matches session
-context against, and where labels land.
-
-## Mapping is many-to-many
-
-One meme -> several artworks (skill picks per session tone).
-One artwork -> several memes. Example candidates:
-
-| Meme | Structure | Fine art candidates |
-|---|---|---|
-| Distracted Boyfriend | temptation triangle | Fragonard, Greuze genre scenes |
-| This Is Fine | denial amid disaster | Bruegel *Fall of Icarus*; Pompeii frescoes |
-| Woman Yelling at Cat | accusation vs. indifference | Caravaggio-school confrontations |
-| Feral consumption | appetite over reason | Goya *Saturn* |
-| Galaxy Brain | escalating enlightenment | apotheosis / assumption sequences |
-
-## Validation step (before building the skill)
-
-Annotate ~50 artworks, map top 20 memes, run selection manually against a few
-real sessions. If the picks land, build the skill; the pack was never the
-product, only the test.
-
-## Sources
-
-- Met Open Access: ~490k works, CC0, bulk CSV + images
-- Rijksmuseum API: ~700k works, high-res
-- Art Institute of Chicago API: CC0
-- Wikimedia Commons / Wikidata: motif-tagged paintings
+**Artwork is separate:** the source records declare public-domain or CC0 status, but the MIT license does not relicense third-party images or fonts. Images download directly from their recorded sources; preserve source links and the rendered credit. Rights declarations are not automated legal verification.

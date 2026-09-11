@@ -59,6 +59,7 @@ class ImageDistributionTests(unittest.TestCase):
         (self.root / "structures.yaml").write_text(yaml.safe_dump([{"id": "example", "roles": ["actor"]}]))
         (self.root / "corpus/sample.yaml").write_text(yaml.safe_dump(self.art))
         shutil.copytree(PROJECT / "tools", self.root / "tools")
+        shutil.copy2(PROJECT / "LICENSE", self.root / "LICENSE")
         with patch.object(build_skill, "REPO", self.root), contextlib.redirect_stdout(io.StringIO()):
             build_skill.main()
         return self.root / "skill"
@@ -149,9 +150,13 @@ class ImageDistributionTests(unittest.TestCase):
     def test_build_without_images_emits_only_metadata_and_code(self):
         skill = self.build()
         self.assertEqual(sorted(p.relative_to(skill).as_posix() for p in skill.rglob("*") if p.is_file()), [
-            "COVERAGE.md", "SKILL.md", "corpus/sample.yaml", "index.yaml",
+            "COVERAGE.md", "LICENSE", "SKILL.md", "corpus/sample.yaml", "index.yaml",
             "tools/get_image.py", "tools/match.py", "tools/render.py",
         ])
+
+    def test_build_preserves_license_notice_in_shared_package(self):
+        skill = self.build()
+        self.assertEqual((skill / "LICENSE").read_bytes(), (PROJECT / "LICENSE").read_bytes())
 
     def test_build_excludes_existing_authoring_images_and_their_hashes(self):
         local = self.root / "corpus/images/sample.jpg"
