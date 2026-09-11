@@ -1,0 +1,54 @@
+id: ciseri-eccehomo
+title: Ecce Homo
+artist: Antonio Ciseri
+date: c. 1871
+source:
+  provider: commons
+  asset: File:Ecce homo by Antonio Ciseri (1).jpg
+  rights: public-domain
+image: images/ciseri-eccehomo.jpg
+what_is_happening: Pilate presents Christ to a roaring crowd below; the accused stands
+  perfectly still
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers:
+- deadpan
+- dark
+- wry
+targets:
+- id: christ
+  kind: figure
+  subject_point:
+  - 0.36
+  - 0.4
+  label_box:
+  - 0.02
+  - 0.05
+  - 0.22
+  - 0.06
+- id: pilate
+  kind: figure
+  subject_point:
+  - 0.55
+  - 0.5
+  label_box:
+  - 0.4
+  - 0.05
+  - 0.22
+  - 0.05
+- id: crowd
+  kind: group
+  subject_point:
+  - 0.6
+  - 0.72
+  label_box:
+  - 0.72
+  - 0.92
+  - 0.25
+  - 0.05
+uses:
+- structure: accusation-vs-indifference
+  bindings:
+    the-accuser: crowd
+    the-indifferent: christ

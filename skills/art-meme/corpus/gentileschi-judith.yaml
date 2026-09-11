@@ -1,0 +1,55 @@
+id: gentileschi-judith
+title: Judith Beheading Holofernes
+artist: Artemisia Gentileschi
+date: c. 1612-1613
+source:
+  provider: commons
+  asset: File:Artemisia Gentileschi - Judith Beheading Holofernes - WGA8563.jpg
+  rights: public-domain
+image: images/gentileschi-judith.jpg
+what_is_happening: two women pin a man down and saw his head off with workmanlike
+  focus
+legible_in_2s: true
+content_flags:
+- graphic-violence
+- gore
+content_intensity: grotesque
+comic_registers:
+- dark
+- deadpan
+targets:
+- id: judith
+  kind: figure
+  subject_point:
+  - 0.8
+  - 0.2
+  label_box:
+  - 0.68
+  - 0.04
+  - 0.29
+  - 0.07
+- id: holofernes
+  kind: figure
+  subject_point:
+  - 0.38
+  - 0.62
+  label_box:
+  - 0.03
+  - 0.88
+  - 0.3
+  - 0.07
+- id: maid
+  kind: figure
+  subject_point:
+  - 0.33
+  - 0.1
+  label_box:
+  - 0.03
+  - 0.3
+  - 0.24
+  - 0.06
+uses:
+- structure: grim-necessary-work
+  bindings:
+    the-executor: judith
+    the-task: holofernes

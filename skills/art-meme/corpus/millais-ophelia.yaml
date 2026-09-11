@@ -1,0 +1,45 @@
+id: millais-ophelia
+title: Ophelia
+artist: John Everett Millais
+date: 1851-1852
+source:
+  provider: commons
+  asset: File:John Everett Millais - Ophelia - Google Art Project.jpg
+  rights: public-domain
+image: images/millais-ophelia.jpg
+what_is_happening: she drifts downstream still singing, hands open, entirely at peace
+  with what is happening
+legible_in_2s: true
+content_flags:
+- death
+content_intensity: mild
+comic_registers:
+- wry
+- dark
+- light
+targets:
+- id: ophelia
+  kind: figure
+  subject_point:
+  - 0.255
+  - 0.58
+  label_box:
+  - 0.02
+  - 0.9
+  - 0.22
+  - 0.05
+- id: stream
+  kind: region
+  subject_point:
+  - 0.72
+  - 0.6
+  label_box:
+  - 0.72
+  - 0.9
+  - 0.25
+  - 0.05
+uses:
+- structure: denial-amid-disaster
+  bindings:
+    the-oblivious: ophelia
+    the-disaster: stream

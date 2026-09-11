@@ -62,7 +62,7 @@ class ImageDistributionTests(unittest.TestCase):
         shutil.copy2(PROJECT / "LICENSE", self.root / "LICENSE")
         with patch.object(build_skill, "REPO", self.root), contextlib.redirect_stdout(io.StringIO()):
             build_skill.main()
-        return self.root / "skill"
+        return self.root / "skills" / build_skill.SKILL_NAME
 
     def test_lookup_uses_exact_recorded_filename_not_search(self):
         response = {"query": {"pages": [{"title": self.resolved["asset"], "imageinfo": [
@@ -151,7 +151,7 @@ class ImageDistributionTests(unittest.TestCase):
         skill = self.build()
         self.assertEqual(sorted(p.relative_to(skill).as_posix() for p in skill.rglob("*") if p.is_file()), [
             "COVERAGE.md", "LICENSE", "SKILL.md", "corpus/sample.yaml", "index.yaml",
-            "tools/get_image.py", "tools/match.py", "tools/render.py",
+            "scripts/get_image.py", "scripts/match.py", "scripts/render.py",
         ])
 
     def test_build_preserves_license_notice_in_shared_package(self):
@@ -171,7 +171,7 @@ class ImageDistributionTests(unittest.TestCase):
         self.download()
         skill = self.build()
         result = subprocess.run(
-            [sys.executable, str(skill / "tools/render.py")],
+            [sys.executable, str(skill / "scripts/render.py")],
             input=json.dumps({"artwork": "sample", "labels": {"figure": "me"}, "out": str(self.root / "render.jpg")}),
             text=True, capture_output=True, check=False,
             env={**os.environ, "ART_MEME_CACHE_DIR": str(self.cache)},
@@ -179,6 +179,45 @@ class ImageDistributionTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         with Image.open(self.root / "render.jpg") as rendered:
             self.assertEqual(rendered.format, "JPEG")
+
+
+class PluginPackagingTests(unittest.TestCase):
+    """The repository root is itself an Agent Plugins package."""
+
+    portable = json.loads((PROJECT / "plugin.json").read_text())
+    claude = json.loads((PROJECT / ".claude-plugin/plugin.json").read_text())
+
+    def test_portable_manifest_targets_the_published_schema(self):
+        self.assertEqual(self.portable["$schema"],
+                         "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
+
+    def test_portable_manifest_uses_only_specified_top_level_fields(self):
+        allowed = {"$schema", "name", "version", "description", "author",
+                   "homepage", "repository", "license", "keywords", "extensions"}
+        self.assertEqual(set(self.portable) - allowed, set())
+
+    def test_plugin_name_stays_kebab_case_for_marketplace_sync(self):
+        """Periods are legal in the spec but break Claude.ai marketplace sync."""
+        self.assertRegex(self.portable["name"], r"^(?!.*--)[a-z0-9][a-z0-9-]{0,62}[a-z0-9]$")
+
+    def test_client_manifest_agrees_with_the_portable_manifest(self):
+        shared = set(self.portable) & set(self.claude)
+        self.assertEqual({k: self.claude[k] for k in shared},
+                         {k: self.portable[k] for k in shared})
+
+    def test_committed_skill_is_discoverable_at_the_fixed_location(self):
+        self.assertTrue((PROJECT / "skills/art-meme/SKILL.md").is_file())
+
+    def test_committed_skill_name_matches_its_directory(self):
+        frontmatter = yaml.safe_load(
+            (PROJECT / "skills/art-meme/SKILL.md").read_text().split("---")[1])
+        self.assertEqual(frontmatter["name"], "art-meme")
+
+    def test_committed_skill_is_current_with_its_sources(self):
+        """Guards the generated package against a stale commit."""
+        self.assertEqual(
+            (PROJECT / "skills/art-meme/SKILL.md").read_text(),
+            (PROJECT / "tools/SKILL.template.md").read_text())
 
 
 if __name__ == "__main__":

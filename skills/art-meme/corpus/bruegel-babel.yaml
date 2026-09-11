@@ -1,0 +1,55 @@
+id: bruegel-babel
+title: The Tower of Babel
+artist: Pieter Bruegel the Elder
+date: 1563
+source:
+  provider: commons
+  asset: File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art
+    Project - edited.jpg
+  rights: public-domain
+image: images/bruegel-babel.jpg
+what_is_happening: a colossal spiral tower rises unfinished while the king inspects
+  the site and workers grovel
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers:
+- wry
+- deadpan
+- light
+targets:
+- id: tower
+  kind: object
+  subject_point:
+  - 0.6
+  - 0.3
+  label_box:
+  - 0.03
+  - 0.05
+  - 0.26
+  - 0.06
+- id: king
+  kind: figure
+  subject_point:
+  - 0.2
+  - 0.84
+  label_box:
+  - 0.02
+  - 0.93
+  - 0.24
+  - 0.05
+- id: workers
+  kind: group
+  subject_point:
+  - 0.3
+  - 0.9
+  label_box:
+  - 0.38
+  - 0.93
+  - 0.22
+  - 0.05
+uses:
+- structure: the-grand-project
+  bindings:
+    the-project: tower
+    the-management: king

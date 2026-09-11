@@ -1,0 +1,44 @@
+id: martin-wrath
+title: The Great Day of His Wrath
+artist: John Martin
+date: 1851-1853
+source:
+  provider: commons
+  asset: File:John Martin - The Great Day of His Wrath - Google Art Project.jpg
+  rights: public-domain
+image: images/martin-wrath.jpg
+what_is_happening: mountains fold over a burning abyss while tiny figures tumble at
+  the edges
+legible_in_2s: true
+content_flags: []
+content_intensity: moderate
+comic_registers:
+- dark
+- hyperbolic
+- absurdist
+targets:
+- id: doom
+  kind: region
+  subject_point:
+  - 0.68
+  - 0.42
+  label_box:
+  - 0.38
+  - 0.06
+  - 0.24
+  - 0.06
+- id: fleeing
+  kind: group
+  subject_point:
+  - 0.27
+  - 0.9
+  label_box:
+  - 0.5
+  - 0.93
+  - 0.24
+  - 0.05
+uses:
+- structure: the-looming
+  bindings:
+    the-looming-thing: doom
+    the-fleeing: fleeing

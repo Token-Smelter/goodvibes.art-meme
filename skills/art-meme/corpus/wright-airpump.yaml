@@ -1,0 +1,56 @@
+id: wright-airpump
+title: An Experiment on a Bird in the Air Pump
+artist: Joseph Wright of Derby
+date: 1768
+source:
+  provider: commons
+  asset: File:An Experiment on a Bird in an Air Pump by Joseph Wright of Derby, 1768.jpg
+  rights: public-domain
+image: images/wright-airpump.jpg
+what_is_happening: a demonstrator suffocates a bird in a vacuum jar while onlookers
+  react with fascination, grief, and indifference
+legible_in_2s: true
+content_flags:
+- animal-peril
+content_intensity: moderate
+comic_registers:
+- dark
+- wry
+- deadpan
+targets:
+- id: experimenter
+  kind: figure
+  subject_point:
+  - 0.39
+  - 0.28
+  label_box:
+  - 0.04
+  - 0.05
+  - 0.28
+  - 0.07
+- id: bird
+  kind: figure
+  subject_point:
+  - 0.51
+  - 0.27
+  label_box:
+  - 0.57
+  - 0.05
+  - 0.26
+  - 0.06
+- id: mourners
+  kind: group
+  subject_point:
+  - 0.63
+  - 0.52
+  label_box:
+  - 0.45
+  - 0.88
+  - 0.22
+  - 0.06
+uses:
+- structure: the-live-demo
+  bindings:
+    the-demonstrator: experimenter
+    the-subject: bird
+    the-mourners: mourners

@@ -1,0 +1,54 @@
+id: david-marat
+title: The Death of Marat
+artist: Jacques-Louis David
+date: 1793
+source:
+  provider: commons
+  asset: File:Death of Marat by David.jpg
+  rights: public-domain
+image: images/david-marat.jpg
+what_is_happening: a man lies dead in his bath, still holding the letter he was working
+  on
+legible_in_2s: true
+content_flags:
+- violence-aftermath
+content_intensity: moderate
+comic_registers:
+- dark
+- deadpan
+targets:
+- id: marat
+  kind: figure
+  subject_point:
+  - 0.18
+  - 0.4
+  label_box:
+  - 0.04
+  - 0.06
+  - 0.28
+  - 0.06
+- id: letter
+  kind: object
+  subject_point:
+  - 0.73
+  - 0.5
+  label_box:
+  - 0.62
+  - 0.3
+  - 0.3
+  - 0.06
+- id: knife
+  kind: object
+  subject_point:
+  - 0.135
+  - 0.95
+  label_box:
+  - 0.28
+  - 0.92
+  - 0.26
+  - 0.05
+uses:
+- structure: struck-down-mid-work
+  bindings:
+    the-fallen: marat
+    the-final-message: letter

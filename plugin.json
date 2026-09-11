@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "goodvibes-art-meme",
+  "version": "0.2.0",
+  "description": "Respond to a conversation moment with a fine-art meme: a public-domain painting whose emotional structure matches the moment, labelled and rendered with a museum credit strip.",
+  "author": {
+    "name": "Token-Smelter",
+    "url": "https://github.com/Token-Smelter"
+  },
+  "homepage": "https://github.com/Token-Smelter/goodvibes.art-meme",
+  "repository": "https://github.com/Token-Smelter/goodvibes.art-meme",
+  "license": "MIT",
+  "keywords": [
+    "good-vibes",
+    "agent-skill",
+    "fine-art",
+    "memes",
+    "public-domain"
+  ]
+}
