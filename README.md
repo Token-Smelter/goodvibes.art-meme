@@ -12,6 +12,20 @@ flowchart LR
     Image --> Render["Labels + artwork + credit"]
 ```
 
+## Examples
+
+> Make a fine-art meme about a skill that was vibe-coded into existence.
+
+<img src="./docs/examples/vibe-coded-skill.jpg" alt="Chardin's The House of Cards. A label on the card structure reads A VIBE-CODED SKILL; a label on the card being placed reads ONE MORE PROMPT." width="460">
+
+*Chardin's child is perfectly serene, which is the joke. Structure: `fragile-edifice`.*
+
+> Our company has spent millions on AI and seen no return, because every artifact still waits on a few human reviewers.
+
+<img src="./docs/examples/software-factory.jpg" alt="Bruegel's The Tower of Babel. A label on the unfinished tower reads YOUR SOFTWARE FACTORY; a label on the small figures below reads PR REVIEWERS." width="560">
+
+*No jargon, and the ratio between the tower and the people is the whole argument. Structure: `the-grand-project`.*
+
 ## Install
 
 Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3.11+, and an agent that reads `SKILL.md` skills. Images need internet access on first use; cached images work offline. uv installs the Python dependencies when each script runs.
