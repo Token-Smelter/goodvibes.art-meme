@@ -224,10 +224,21 @@ class PluginPackagingTests(unittest.TestCase):
     def test_committed_skill_is_discoverable_at_the_fixed_location(self):
         self.assertTrue((PROJECT / "skills/art-meme/SKILL.md").is_file())
 
+    @staticmethod
+    def frontmatter():
+        """Parse the delimited block; invalid YAML here breaks skill loading."""
+        text = (PROJECT / "skills/art-meme/SKILL.md").read_text()
+        _, block, _ = text.split("---\n", 2)
+        try:
+            return yaml.safe_load(block)
+        except yaml.YAMLError as exc:
+            raise AssertionError(f"SKILL.md frontmatter is not valid YAML: {exc}") from exc
+
     def test_committed_skill_name_matches_its_directory(self):
-        frontmatter = yaml.safe_load(
-            (PROJECT / "skills/art-meme/SKILL.md").read_text().split("---")[1])
-        self.assertEqual(frontmatter["name"], "art-meme")
+        self.assertEqual(self.frontmatter()["name"], "art-meme")
+
+    def test_description_stays_within_the_specified_length(self):
+        self.assertLessEqual(len(self.frontmatter()["description"]), 1024)
 
     def test_committed_skill_is_current_with_its_sources(self):
         """Guards the generated package against a stale commit."""

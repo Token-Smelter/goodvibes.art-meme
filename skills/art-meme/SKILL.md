@@ -1,6 +1,6 @@
 ---
 name: art-meme
-description: Turn a situation into a fine-art meme — a public-domain masterpiece whose emotional structure matches it, with labels composited onto its figures. The situation can be anything: something that just happened in session, a hypothetical, a team's predicament, an industry-wide mess, a mood. Triggered by "meme this", "art meme", "fine art meme", "make a meme about <situation>", "react to this with art", or any request to caption/memeify something with a painting. Produces a shareable JPEG with credit line. Abstention is a valid outcome.
+description: Turn a situation into a fine-art meme — a public-domain masterpiece whose emotional structure matches it, with labels composited onto its figures. The situation can be anything — something that just happened in session, a hypothetical, a team's predicament, an industry-wide mess, or a mood. Triggered by "meme this", "art meme", "fine art meme", "make a meme about <situation>", "react to this with art", or any request to caption/memeify something with a painting. Produces a shareable JPEG with credit line. Abstention is a valid outcome.
 license: MIT (see LICENSE; artwork and fonts are separately licensed)
 compatibility: Requires uv and Python 3.11+. Needs network access the first time each artwork is downloaded; verified cached images then work offline. Needs a serif and bold sans font (system DejaVu, Georgia/Arial, or user-supplied fonts/).
 ---
