@@ -27,6 +27,9 @@ ROOT = Path(__file__).resolve().parent.parent
 API = "https://commons.wikimedia.org/w/api.php"
 USER_AGENT = "ArtMeme/0.2 (public-domain art skill; Python urllib)"
 MAX_DOWNLOAD_BYTES = 50 * 1024 * 1024
+# Wikimedia serves originals from upload and thumbnails from thumb. Exact
+# matches only: a suffix test would accept lookalikes like upload.wikimedia.org.evil.com.
+IMAGE_HOSTS = frozenset({"upload.wikimedia.org", "thumb.wikimedia.org"})
 THUMB_WIDTH = 1600
 FORMATS = {"JPEG": ".jpg", "PNG": ".png"}
 
@@ -90,8 +93,8 @@ def _resolve_commons(source):
         info = page["imageinfo"][0]
         download_url = info.get("thumburl") or info["url"]
         parsed = urlsplit(download_url)
-        if parsed.scheme != "https" or parsed.hostname != "upload.wikimedia.org":
-            raise ImageError("Commons returned an unexpected image host")
+        if parsed.scheme != "https" or parsed.hostname not in IMAGE_HOSTS:
+            raise ImageError(f"Commons returned an unexpected image host: {parsed.hostname}")
         return {
             "asset": page["title"],
             "source_url": "https://commons.wikimedia.org/wiki/" + quote(page["title"].replace(" ", "_"), safe=":"),

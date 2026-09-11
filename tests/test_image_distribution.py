@@ -73,6 +73,22 @@ class ImageDistributionTests(unittest.TestCase):
         query = parse_qs(urlsplit(request.call_args.args[0]).query)
         self.assertEqual((query["titles"], "generator" in query), (["File:Exact Artwork.jpg"], False))
 
+    def _resolve_from_host(self, download_url):
+        response = {"query": {"pages": [{"title": self.resolved["asset"], "imageinfo": [
+            {"thumburl": download_url, "url": download_url}
+        ]}]}}
+        with patch.object(get_image, "_request", return_value=json.dumps(response).encode()):
+            return get_image._resolve_commons(self.art["source"])
+
+    def test_thumbnail_host_is_accepted(self):
+        """Wikimedia serves thumbnails from thumb, not upload."""
+        url = "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/art/1600px-art.jpg"
+        self.assertEqual(self._resolve_from_host(url)["download_url"], url)
+
+    def test_lookalike_image_host_is_rejected(self):
+        with self.assertRaisesRegex(get_image.ImageError, "unexpected image host"):
+            self._resolve_from_host("https://upload.wikimedia.org.evil.example/art.jpg")
+
     def test_cached_download_is_reused_offline_without_changing_bytes(self):
         self.download()
         with patch.object(get_image, "_request", side_effect=AssertionError("network not allowed")):
