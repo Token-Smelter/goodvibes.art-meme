@@ -1,42 +1,67 @@
 # [GoodVibes] Art Meme
 
-Turn a conversation moment into a fine-art meme: a public-domain painting, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/Token-Smelter)**.
+Describe a situation. Get the painting that already knew: a public-domain artwork, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/Token-Smelter)**.
+
+The situation can be anything with participants and a tension between them — something that just happened in your session, a hypothetical, your team's predicament, an entire industry's problem, or a mood.
 
 ```mermaid
 flowchart LR
-    Moment["Your conversation"] --> Match["Match an emotional structure"]
+    Situation["Any situation"] --> Match["Match an emotional structure"]
     Match --> Pick["Choose an artwork or abstain"]
     Pick --> Image["Fetch the recorded source and cache it"]
     Image --> Render["Labels + artwork + credit"]
 ```
 
+## Examples
+
+> Make a fine-art meme about a skill that was vibe-coded into existence.
+
+<img src="./docs/examples/vibe-coded-skill.jpg" alt="Chardin's The House of Cards. A label on the card structure reads A VIBE-CODED SKILL; a label on the card being placed reads ONE MORE PROMPT." width="460">
+
+> Our company has spent millions on AI and seen no return, because every artifact still waits on a few human reviewers.
+
+<img src="./docs/examples/software-factory.jpg" alt="Bruegel's The Tower of Babel. A label on the unfinished tower reads YOUR SOFTWARE FACTORY; a label on the small figures below reads PR REVIEWERS." width="560">
+
 ## Install
 
-Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3.11+, and an agent that supports `SKILL.md` skills. Images need internet access on first use; cached images work offline. uv installs the Python dependencies when each script runs.
+Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3.11+, and an agent that reads `SKILL.md` skills. Images need internet access on first use; cached images work offline. uv installs the Python dependencies when each script runs.
+
+This repository **is** the plugin — a directory, not an archive. It ships a root [`plugin.json`](./plugin.json) targeting the [Agent Plugins](https://agent-plugins.org/specification) v1.0.0 standard, and the skill itself follows the [Agent Skills](https://agentskills.io/specification) spec. Clone it once:
 
 ```bash
 git clone https://github.com/Token-Smelter/goodvibes.art-meme.git
-cd goodvibes.art-meme
+```
+
+Then point your agent at it. The skill is committed at `skills/art-meme/`, so no build step is required.
+
+| Agent | Install |
+|---|---|
+| Claude Code | `ln -s "$PWD/goodvibes.art-meme/skills/art-meme" ~/.claude/skills/art-meme` |
+| Codex | `ln -s "$PWD/goodvibes.art-meme/skills/art-meme" ~/.agents/skills/art-meme` |
+| Pi | `ln -s "$PWD/goodvibes.art-meme/skills/art-meme" ~/.pi/agent/skills/art-meme` |
+| Any Agent Plugins client | Load the repository root as a plugin directory |
+
+Copy the directory instead of linking it if you prefer a detached snapshot. Either way the installed skill is named `art-meme`; only the repository carries the `goodvibes.` collection prefix.
+
+Rebuild `skills/art-meme/` after editing anything under `corpus/`, `structures.yaml`, or `tools/`:
+
+```bash
 uv run tools/build_skill.py
 ```
 
-Copy the generated **`skill/`** directory into your agent's skills directory under the name **`art-meme`**. For Claude Code, use `~/.claude/skills/art-meme/`. If already installed, back it up before replacing it. The repo has a collection prefix; the installed skill name remains `art-meme`.
-
-Alternatively, download the image-free skill ZIP from [Releases](https://github.com/Token-Smelter/goodvibes.art-meme/releases) and extract its `art-meme/` directory there.
-
 Then ask your agent:
 
-> Make a fine-art meme of me dealing with the weekly status report.
+> Make a fine-art meme about our company spending millions on AI while every output still waits on a handful of reviewers.
 
-The agent chooses from the curated corpus, inspects the image, writes labels, and renders a JPEG. If no painting fits, it should say so rather than force a joke. Invoke it explicitly; it does not post messages or publish images for you.
+The agent distills the situation, chooses from the curated corpus, inspects the image, writes labels naming the real participants, and renders a JPEG. If no painting fits, it should say so rather than force a joke. Invoke it explicitly; it does not post messages or publish images for you.
 
 ## Try the renderer directly
 
-From the generated `skill/` directory:
+From the `skills/art-meme/` directory:
 
 ```bash
-uv run tools/get_image.py titian-sisyphus
-printf '%s\n' '{"artwork":"titian-sisyphus","labels":{"sisyphus":"me","boulder":"the weekly status report"},"out":"/tmp/sisyphus.jpg"}' | uv run tools/render.py
+uv run scripts/get_image.py titian-sisyphus
+printf '%s\n' '{"artwork":"titian-sisyphus","labels":{"sisyphus":"me","boulder":"the weekly status report"},"out":"/tmp/sisyphus.jpg"}' | uv run scripts/render.py
 ```
 
 The image command returns a local `path` for inspection and source provenance. The renderer also downloads automatically when needed. It keeps the full composition, adds labels without cropping, and appends artist/title/date below the canvas.
@@ -49,17 +74,33 @@ The repository and generated skill distribute **code and annotations, not artwor
 |---|---|
 | Cache | `${XDG_CACHE_HOME:-~/.cache}/art-meme`, or `ART_MEME_CACHE_DIR` |
 | Integrity | SHA-256 recorded on download and verified on every cache reuse |
-| Refresh | `uv run tools/get_image.py <id> --refresh` bypasses local/cache copies |
+| Refresh | `uv run scripts/get_image.py <id> --refresh` bypasses local/cache copies |
 | Source changes | First downloads/refreshes use the current Commons file; historical revisions are not pinned |
 | Failures | Unavailable sources and corrupt cache entries produce errors, not search substitutions |
 | Fonts | System DejaVu on Linux, Georgia/Arial on macOS/Windows, or user-supplied `fonts/serif.ttf` and `fonts/sans-bold.ttf` |
+
+## Package layout
+
+```text
+goodvibes.art-meme/
+├── plugin.json              # Agent Plugins v1.0.0 manifest (portable)
+├── .claude-plugin/          # Claude Code's own manifest location
+├── skills/art-meme/         # generated, committed, installable
+│   ├── SKILL.md
+│   ├── scripts/             # get_image, match, render
+│   ├── corpus/              # artwork annotations
+│   └── index.yaml
+└── tools/                   # authoring sources that generate the skill
+```
+
+Agent Plugins v1 standardizes two component types: skills and MCP servers. This plugin ships one skill and no MCP server.
 
 ## Extend it
 
 - **`structures.yaml`** defines reusable relations between roles.
 - **`corpus/*.yaml`** identifies artworks, label geometry, and each artwork's role bindings through `uses[]`. Mapping is many-to-many.
 - **`tools/SKILL.template.md`** supplies the agent instructions.
-- **`tools/build_skill.py`** generates the shareable skill. Never hand-edit `skill/`.
+- **`tools/build_skill.py`** generates the shareable skill. Never hand-edit `skills/art-meme/`; a test fails if the committed copy drifts from its sources.
 - **`tools/fetch_commons.py`** is an authoring search helper, not a runtime dependency. Optional local `corpus/images/` copies are ignored by Git and never packaged.
 
 Inspect the original and a test render when adding or changing an annotation. Existing structural matches and label placement are experimental; a successful build is not proof that a joke lands. See [DESIGN.md](./DESIGN.md) for design context, including aspirational behavior not yet enforced by the scripts.

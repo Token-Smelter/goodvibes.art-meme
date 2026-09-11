@@ -2,11 +2,12 @@
 # requires-python = ">=3.11"
 # dependencies = ["pyyaml>=6", "pillow>=10"]
 # ///
-"""Validate the corpus and generate the skill/ directory atomically.
+"""Validate the corpus and generate skills/art-meme/ atomically.
 
 Checks: every uses[].structure exists; bindings cover all roles with declared
 target ids; exact downloadable source identifiers exist. Emits coverage matrix.
-Images stay outside the package. skill/ is GENERATED — never hand-edited.
+Images stay outside the package. skills/art-meme/ is GENERATED and committed so
+the repository installs directly as an Agent Plugin — never hand-edit it.
 """
 import json
 import shutil
@@ -18,6 +19,7 @@ import yaml
 from get_image import ImageError, validate_source
 
 REPO = Path(__file__).resolve().parent.parent
+SKILL_NAME = "art-meme"
 STRUCTURE_WARN = 25
 
 
@@ -77,10 +79,10 @@ def main():
             by_register.setdefault(r, []).append(w["id"])
     unused = sorted(set(structures) - set(by_structure))
 
-    tmp = REPO / "skill.tmp"
+    tmp = REPO / "skills" / f".{SKILL_NAME}.tmp"
     shutil.rmtree(tmp, ignore_errors=True)
     (tmp / "corpus").mkdir(parents=True)
-    (tmp / "tools").mkdir()
+    (tmp / "scripts").mkdir()
 
     for w in works:
         (tmp / "corpus" / f"{w['id']}.yaml").write_text(
@@ -91,9 +93,9 @@ def main():
         "works": works,
     }, sort_keys=False, allow_unicode=True))
     shutil.copy2(REPO / "LICENSE", tmp / "LICENSE")
-    shutil.copy2(REPO / "tools/get_image.py", tmp / "tools/get_image.py")
-    shutil.copy2(REPO / "tools/render.py", tmp / "tools/render.py")
-    shutil.copy2(REPO / "tools/match.py", tmp / "tools/match.py")
+    shutil.copy2(REPO / "tools/get_image.py", tmp / "scripts/get_image.py")
+    shutil.copy2(REPO / "tools/render.py", tmp / "scripts/render.py")
+    shutil.copy2(REPO / "tools/match.py", tmp / "scripts/match.py")
     shutil.copy2(REPO / "tools/SKILL.template.md", tmp / "SKILL.md")
 
     cov = ["# Coverage\n", "| Structure | Works |", "|---|---|"]
@@ -104,7 +106,7 @@ def main():
         cov += ["", f"Unused structures: {', '.join(unused)}"]
     (tmp / "COVERAGE.md").write_text("\n".join(cov) + "\n")
 
-    dest = REPO / "skill"
+    dest = REPO / "skills" / SKILL_NAME
     shutil.rmtree(dest, ignore_errors=True)
     tmp.rename(dest)
     print(json.dumps({"works": len(works), "structures": len(structures),

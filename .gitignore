@@ -5,6 +5,5 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 /corpus/images/
-/skill/
-/skill.tmp/
+/skills/.art-meme.tmp/
 /out/

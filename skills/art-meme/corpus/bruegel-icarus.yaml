@@ -1,0 +1,55 @@
+id: bruegel-icarus
+title: Landscape with the Fall of Icarus
+artist: Pieter Bruegel the Elder (attr.)
+date: c. 1560
+source:
+  provider: commons
+  asset: File:Pieter Bruegel the Elder - Landscape with the Fall of Icarus - Brussels,
+    Royal Museums of Fine Arts of Belgium - Google Arts & Culture.jpg
+  rights: public-domain
+image: images/bruegel-icarus.jpg
+what_is_happening: a ploughman works on serenely while a pair of legs disappears into
+  the sea behind him
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers:
+- wry
+- deadpan
+- light
+targets:
+- id: ploughman
+  kind: figure
+  subject_point:
+  - 0.43
+  - 0.62
+  label_box:
+  - 0.03
+  - 0.86
+  - 0.28
+  - 0.07
+- id: icarus
+  kind: figure
+  subject_point:
+  - 0.845
+  - 0.785
+  label_box:
+  - 0.55
+  - 0.87
+  - 0.24
+  - 0.06
+- id: ship
+  kind: object
+  subject_point:
+  - 0.8
+  - 0.62
+  label_box:
+  - 0.72
+  - 0.3
+  - 0.24
+  - 0.06
+uses:
+- structure: denial-amid-disaster
+  bindings:
+    the-oblivious: ploughman
+    the-disaster: icarus

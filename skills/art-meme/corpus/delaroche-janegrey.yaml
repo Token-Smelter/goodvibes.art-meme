@@ -1,0 +1,64 @@
+id: delaroche-janegrey
+title: The Execution of Lady Jane Grey
+artist: Paul Delaroche
+date: 1833
+source:
+  provider: commons
+  asset: File:PAUL DELAROCHE - Ejecución de Lady Jane Grey (National Gallery de Londres,
+    1834).jpg
+  rights: public-domain
+image: images/delaroche-janegrey.jpg
+what_is_happening: the blindfolded condemned feels for the block while the executioner
+  waits and the attendants cannot watch
+legible_in_2s: true
+content_flags:
+- violence
+content_intensity: moderate
+comic_registers:
+- dark
+targets:
+- id: jane
+  kind: figure
+  subject_point:
+  - 0.44
+  - 0.4
+  label_box:
+  - 0.03
+  - 0.05
+  - 0.24
+  - 0.06
+- id: executioner
+  kind: figure
+  subject_point:
+  - 0.82
+  - 0.3
+  label_box:
+  - 0.7
+  - 0.04
+  - 0.24
+  - 0.05
+- id: block
+  kind: object
+  subject_point:
+  - 0.455
+  - 0.73
+  label_box:
+  - 0.7
+  - 0.9
+  - 0.27
+  - 0.05
+- id: mourners
+  kind: group
+  subject_point:
+  - 0.2
+  - 0.42
+  label_box:
+  - 0.02
+  - 0.9
+  - 0.24
+  - 0.05
+uses:
+- structure: the-reckoning
+  bindings:
+    the-condemned: jane
+    the-squad: executioner

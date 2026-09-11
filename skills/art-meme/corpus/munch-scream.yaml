@@ -1,0 +1,44 @@
+id: munch-scream
+title: The Scream
+artist: Edvard Munch
+date: 1893
+source:
+  provider: commons
+  asset: File:Edvard Munch, 1893, The Scream, oil, tempera and pastel on cardboard,
+    91 x 73 cm, National Gallery of Norway.jpg
+  rights: public-domain
+image: images/munch-scream.jpg
+what_is_happening: a figure clutches its face and screams while two others stroll
+  on unbothered
+legible_in_2s: true
+content_flags: []
+content_intensity: mild
+comic_registers:
+- light
+- wry
+- hyperbolic
+targets:
+- id: screamer
+  kind: figure
+  subject_point:
+  - 0.52
+  - 0.55
+  label_box:
+  - 0.05
+  - 0.88
+  - 0.38
+  - 0.07
+- id: bystanders
+  kind: group
+  subject_point:
+  - 0.09
+  - 0.42
+  label_box:
+  - 0.04
+  - 0.06
+  - 0.3
+  - 0.06
+uses:
+- structure: the-overwhelm
+  bindings:
+    the-overwhelmed: screamer

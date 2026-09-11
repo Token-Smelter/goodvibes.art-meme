@@ -1,0 +1,56 @@
+id: fragonard-swing
+title: The Swing
+artist: Jean-Honoré Fragonard
+date: 1767
+source:
+  provider: commons
+  asset: File:Joean Honoré Fragonard - The Swing.jpg
+  rights: public-domain
+image: images/fragonard-swing.jpg
+what_is_happening: a young woman swings gaily while a hidden admirer gazes up her
+  skirts and an old man works the ropes, oblivious
+legible_in_2s: true
+content_flags:
+- suggestive
+content_intensity: mild
+comic_registers:
+- light
+- wry
+- absurdist
+targets:
+- id: swinger
+  kind: figure
+  subject_point:
+  - 0.555
+  - 0.55
+  label_box:
+  - 0.3
+  - 0.04
+  - 0.3
+  - 0.06
+- id: admirer
+  kind: figure
+  subject_point:
+  - 0.13
+  - 0.74
+  label_box:
+  - 0.03
+  - 0.9
+  - 0.26
+  - 0.06
+- id: pusher
+  kind: figure
+  subject_point:
+  - 0.865
+  - 0.68
+  label_box:
+  - 0.7
+  - 0.9
+  - 0.27
+  - 0.06
+uses:
+- structure: temptation-triangle
+  bindings:
+    the-distracted: admirer
+    the-temptation: swinger
+    the-neglected: pusher

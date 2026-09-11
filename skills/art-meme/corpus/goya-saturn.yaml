@@ -1,0 +1,48 @@
+id: goya-saturn
+title: Saturn Devouring His Son
+artist: Francisco Goya
+date: 1820-1823
+source:
+  provider: commons
+  asset: File:Francisco de Goya, Saturno devorando a su hijo (1819-1823).jpg
+  rights: public-domain
+image: images/goya-saturn.jpg
+what_is_happening: a giant frantically eats a human body
+legible_in_2s: true
+content_flags:
+- graphic-violence
+content_intensity: grotesque
+comic_registers:
+- dark
+- hyperbolic
+- absurdist
+targets:
+- id: saturn
+  kind: figure
+  subject_point:
+  - 0.45
+  - 0.22
+  label_box:
+  - 0.04
+  - 0.05
+  - 0.42
+  - 0.08
+- id: victim
+  kind: figure
+  subject_point:
+  - 0.55
+  - 0.42
+  label_box:
+  - 0.58
+  - 0.55
+  - 0.38
+  - 0.07
+uses:
+- structure: feral-consumption
+  bindings:
+    the-consumer: saturn
+    the-consumed: victim
+- structure: self-destruction
+  bindings:
+    the-actor: saturn
+    the-damaged-self: victim

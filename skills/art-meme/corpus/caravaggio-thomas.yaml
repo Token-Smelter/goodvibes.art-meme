@@ -1,0 +1,66 @@
+id: caravaggio-thomas
+title: The Incredulity of Saint Thomas
+artist: Caravaggio
+date: 1601-1602
+source:
+  provider: commons
+  asset: File:The Incredulity of Saint Thomas-Caravaggio (1601-2).jpg
+  rights: public-domain
+image: images/caravaggio-thomas.jpg
+what_is_happening: a man jams his finger into another man's wound to verify it, while
+  two others crane in to watch
+legible_in_2s: true
+content_flags:
+- wound-imagery
+- religious-figure
+content_intensity: moderate
+comic_registers:
+- wry
+- dark
+- deadpan
+targets:
+- id: doubter
+  kind: figure
+  subject_point:
+  - 0.49
+  - 0.38
+  label_box:
+  - 0.68
+  - 0.42
+  - 0.28
+  - 0.08
+- id: wound
+  kind: region
+  subject_point:
+  - 0.36
+  - 0.53
+  label_box:
+  - 0.03
+  - 0.87
+  - 0.3
+  - 0.08
+- id: christ
+  kind: figure
+  subject_point:
+  - 0.32
+  - 0.24
+  label_box:
+  - 0.03
+  - 0.05
+  - 0.26
+  - 0.07
+- id: onlookers
+  kind: group
+  subject_point:
+  - 0.58
+  - 0.16
+  label_box:
+  - 0.66
+  - 0.05
+  - 0.31
+  - 0.07
+uses:
+- structure: demanded-proof
+  bindings:
+    the-doubter: doubter
+    the-wound: wound

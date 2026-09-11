@@ -1,0 +1,1667 @@
+generated: '2026-09-11'
+structures:
+- id: feral-consumption
+  description: appetite overrides reason; the actor knows it's wrong and cannot stop
+  roles:
+  - the-consumer
+  - the-consumed
+  origin_examples:
+  - kind: artwork
+    ref: goya-saturn
+- id: self-destruction
+  description: the actor damages what is their own, mid-act, aware
+  roles:
+  - the-actor
+  - the-damaged-self
+  origin_examples:
+  - kind: session
+    ref: force-pushed over my own uncommitted fix
+- id: temptation-triangle
+  description: committed attention abandoned for a new attraction
+  roles:
+  - the-distracted
+  - the-temptation
+  - the-neglected
+  origin_examples:
+  - kind: meme
+    ref: distracted-boyfriend
+    bindings:
+      the-distracted: boyfriend
+      the-temptation: passing-woman
+      the-neglected: girlfriend
+- id: denial-amid-disaster
+  description: ordinary activity continues while catastrophe unfolds in frame
+  roles:
+  - the-oblivious
+  - the-disaster
+  origin_examples:
+  - kind: meme
+    ref: this-is-fine
+    bindings:
+      the-oblivious: dog
+      the-disaster: burning-room
+- id: accusation-vs-indifference
+  description: furious accusation meets serene, total unconcern
+  roles:
+  - the-accuser
+  - the-indifferent
+  origin_examples:
+  - kind: meme
+    ref: woman-yelling-at-cat
+    bindings:
+      the-accuser: yelling-woman
+      the-indifferent: cat
+- id: premature-celebration
+  description: triumph declared while the actual outcome is still undecided or already
+    lost
+  roles:
+  - the-celebrant
+  - the-unfinished-business
+  origin_examples:
+  - kind: session
+    ref: tests green — the test file was never saved
+- id: fragile-edifice
+  description: something grand rests entirely on one small, ignored, load-bearing
+    detail
+  roles:
+  - the-edifice
+  - the-load-bearing-detail
+  origin_examples:
+  - kind: meme
+    ref: xkcd-dependency
+    bindings:
+      the-edifice: all-modern-infrastructure
+      the-load-bearing-detail: random-person-in-nebraska
+- id: unheeded-warning
+  description: the prophet is right, specific, and completely ignored
+  roles:
+  - the-prophet
+  - the-deaf-audience
+  origin_examples:
+  - kind: session
+    ref: the deprecation warning in every CI run since March
+- id: hubris-before-fall
+  description: soaring on borrowed confidence toward a limit everyone else can see
+  roles:
+  - the-ascendant
+  - the-ignored-limit
+  origin_examples:
+  - kind: artwork
+    ref: fall-of-icarus
+- id: escalating-desperation
+  description: each workaround is bigger and stranger than the problem it patches
+  roles:
+  - the-actor
+  - the-original-problem
+  - the-current-workaround
+  origin_examples:
+  - kind: session
+    ref: regex → parser → vendored fork → maintainer
+- id: the-haunting
+  description: what you shipped returns at night to sit on your chest
+  roles:
+  - the-sleeper
+  - the-incubus
+  origin_examples:
+  - kind: artwork
+    ref: fuseli-nightmare
+- id: demanded-proof
+  description: refuses to believe it works until the finger is physically in the wound
+  roles:
+  - the-doubter
+  - the-wound
+  origin_examples:
+  - kind: artwork
+    ref: caravaggio-thomas
+- id: the-overwhelm
+  description: everything is too much; pure unfiltered reaction while the world carries
+    on
+  roles:
+  - the-overwhelmed
+  origin_examples:
+  - kind: artwork
+    ref: munch-scream
+- id: the-survey
+  description: standing at the edge, contemplating the vast thing before entering
+    it
+  roles:
+  - the-surveyor
+  - the-expanse
+  origin_examples:
+  - kind: artwork
+    ref: friedrich-wanderer
+- id: the-live-demo
+  description: the demonstration proceeds before an audience; the thing in the jar
+    is not going to make it
+  roles:
+  - the-demonstrator
+  - the-subject
+  - the-mourners
+  origin_examples:
+  - kind: artwork
+    ref: wright-airpump
+- id: grim-necessary-work
+  description: the grim task is executed deliberately, with focus and zero pleasure
+  roles:
+  - the-executor
+  - the-task
+  origin_examples:
+  - kind: session
+    ref: deleting the legacy module everyone was afraid of
+- id: the-hustle
+  description: everyone at the table is in on it except the mark
+  roles:
+  - the-hustler
+  - the-mark
+  origin_examples:
+  - kind: artwork
+    ref: latour-cheat
+- id: disproportionate-pain
+  description: a tiny thing bites; the reaction is total
+  roles:
+  - the-bitten
+  - the-tiny-thing
+  origin_examples:
+  - kind: session
+    ref: one-character typo, forty-minute debugging spiral
+- id: struck-down-mid-work
+  description: fallen at the desk, pen still in hand, the last message unsent
+  roles:
+  - the-fallen
+  - the-final-message
+  origin_examples:
+  - kind: artwork
+    ref: david-marat
+- id: the-distant-hope
+  description: everyone waves desperately at the tiny thing on the horizon that may
+    not have seen them
+  roles:
+  - the-desperate
+  - the-far-salvation
+  origin_examples:
+  - kind: artwork
+    ref: gericault-medusa
+- id: the-grand-project
+  description: the magnificent thing under construction that everyone privately knows
+    will never be finished
+  roles:
+  - the-project
+  - the-management
+  origin_examples:
+  - kind: artwork
+    ref: bruegel-babel
+- id: the-reckoning
+  description: standing before the squad; the outcome is not in doubt, only the timing
+  roles:
+  - the-condemned
+  - the-squad
+  origin_examples:
+  - kind: artwork
+    ref: goya-thirdmay
+- id: the-looming
+  description: the enormous thing has appeared on the horizon and everyone below is
+    fleeing
+  roles:
+  - the-looming-thing
+  - the-fleeing
+  origin_examples:
+  - kind: artwork
+    ref: goya-colossus
+- id: the-eternal-task
+  description: carrying the boulder up the hill again, knowing it comes back down
+  roles:
+  - the-laborer
+  - the-burden
+  origin_examples:
+  - kind: artwork
+    ref: titian-sisyphus
+works:
+- id: bosch-stone
+  title: Cutting the Stone (The Extraction of the Stone of Madness)
+  artist: Hieronymus Bosch
+  date: c. 1494-1516
+  source:
+    provider: commons
+    asset: File:Cutting the Stone (Bosch).jpg
+    rights: public-domain
+  image: images/bosch-stone.jpg
+  what_is_happening: a quack in a funnel hat performs head surgery on a trusting patient
+    while accomplices look on
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - absurdist
+  - wry
+  - dark
+  targets:
+  - id: surgeon
+    kind: figure
+    subject_point:
+    - 0.26
+    - 0.4
+    label_box:
+    - 0.38
+    - 0.3
+    - 0.24
+    - 0.05
+  - id: patient
+    kind: figure
+    subject_point:
+    - 0.36
+    - 0.46
+    label_box:
+    - 0.6
+    - 0.72
+    - 0.25
+    - 0.05
+  uses:
+  - structure: the-hustle
+    bindings:
+      the-hustler: surgeon
+      the-mark: patient
+- id: bruegel-babel
+  title: The Tower of Babel
+  artist: Pieter Bruegel the Elder
+  date: 1563
+  source:
+    provider: commons
+    asset: File:Pieter Bruegel the Elder - The Tower of Babel (Vienna) - Google Art
+      Project - edited.jpg
+    rights: public-domain
+  image: images/bruegel-babel.jpg
+  what_is_happening: a colossal spiral tower rises unfinished while the king inspects
+    the site and workers grovel
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - wry
+  - deadpan
+  - light
+  targets:
+  - id: tower
+    kind: object
+    subject_point:
+    - 0.6
+    - 0.3
+    label_box:
+    - 0.03
+    - 0.05
+    - 0.26
+    - 0.06
+  - id: king
+    kind: figure
+    subject_point:
+    - 0.2
+    - 0.84
+    label_box:
+    - 0.02
+    - 0.93
+    - 0.24
+    - 0.05
+  - id: workers
+    kind: group
+    subject_point:
+    - 0.3
+    - 0.9
+    label_box:
+    - 0.38
+    - 0.93
+    - 0.22
+    - 0.05
+  uses:
+  - structure: the-grand-project
+    bindings:
+      the-project: tower
+      the-management: king
+- id: bruegel-icarus
+  title: Landscape with the Fall of Icarus
+  artist: Pieter Bruegel the Elder (attr.)
+  date: c. 1560
+  source:
+    provider: commons
+    asset: File:Pieter Bruegel the Elder - Landscape with the Fall of Icarus - Brussels,
+      Royal Museums of Fine Arts of Belgium - Google Arts & Culture.jpg
+    rights: public-domain
+  image: images/bruegel-icarus.jpg
+  what_is_happening: a ploughman works on serenely while a pair of legs disappears
+    into the sea behind him
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - wry
+  - deadpan
+  - light
+  targets:
+  - id: ploughman
+    kind: figure
+    subject_point:
+    - 0.43
+    - 0.62
+    label_box:
+    - 0.03
+    - 0.86
+    - 0.28
+    - 0.07
+  - id: icarus
+    kind: figure
+    subject_point:
+    - 0.845
+    - 0.785
+    label_box:
+    - 0.55
+    - 0.87
+    - 0.24
+    - 0.06
+  - id: ship
+    kind: object
+    subject_point:
+    - 0.8
+    - 0.62
+    label_box:
+    - 0.72
+    - 0.3
+    - 0.24
+    - 0.06
+  uses:
+  - structure: denial-amid-disaster
+    bindings:
+      the-oblivious: ploughman
+      the-disaster: icarus
+- id: caravaggio-lizard
+  title: Boy Bitten by a Lizard
+  artist: Caravaggio
+  date: c. 1594-1596
+  source:
+    provider: commons
+    asset: File:Caravaggio - Boy Bitten by a Lizard.jpg
+    rights: public-domain
+  image: images/caravaggio-lizard.jpg
+  what_is_happening: a boy recoils in theatrical agony from a tiny lizard biting his
+    finger
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - light
+  - hyperbolic
+  - wry
+  targets:
+  - id: boy
+    kind: figure
+    subject_point:
+    - 0.5
+    - 0.34
+    label_box:
+    - 0.03
+    - 0.05
+    - 0.26
+    - 0.06
+  - id: lizard
+    kind: figure
+    subject_point:
+    - 0.5
+    - 0.73
+    label_box:
+    - 0.03
+    - 0.88
+    - 0.26
+    - 0.06
+  uses:
+  - structure: disproportionate-pain
+    bindings:
+      the-bitten: boy
+      the-tiny-thing: lizard
+- id: caravaggio-thomas
+  title: The Incredulity of Saint Thomas
+  artist: Caravaggio
+  date: 1601-1602
+  source:
+    provider: commons
+    asset: File:The Incredulity of Saint Thomas-Caravaggio (1601-2).jpg
+    rights: public-domain
+  image: images/caravaggio-thomas.jpg
+  what_is_happening: a man jams his finger into another man's wound to verify it,
+    while two others crane in to watch
+  legible_in_2s: true
+  content_flags:
+  - wound-imagery
+  - religious-figure
+  content_intensity: moderate
+  comic_registers:
+  - wry
+  - dark
+  - deadpan
+  targets:
+  - id: doubter
+    kind: figure
+    subject_point:
+    - 0.49
+    - 0.38
+    label_box:
+    - 0.68
+    - 0.42
+    - 0.28
+    - 0.08
+  - id: wound
+    kind: region
+    subject_point:
+    - 0.36
+    - 0.53
+    label_box:
+    - 0.03
+    - 0.87
+    - 0.3
+    - 0.08
+  - id: christ
+    kind: figure
+    subject_point:
+    - 0.32
+    - 0.24
+    label_box:
+    - 0.03
+    - 0.05
+    - 0.26
+    - 0.07
+  - id: onlookers
+    kind: group
+    subject_point:
+    - 0.58
+    - 0.16
+    label_box:
+    - 0.66
+    - 0.05
+    - 0.31
+    - 0.07
+  uses:
+  - structure: demanded-proof
+    bindings:
+      the-doubter: doubter
+      the-wound: wound
+- id: chardin-cards
+  title: The House of Cards
+  artist: Jean Siméon Chardin
+  date: c. 1737
+  source:
+    provider: commons
+    asset: File:Jean Siméon Chardin, The House of Cards, probably 1737, NGA 97.jpg
+    rights: public-domain
+  image: images/chardin-cards.jpg
+  what_is_happening: a child calmly adds one more card to a structure that exists
+    entirely at the mercy of the next card
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - deadpan
+  - light
+  - wry
+  targets:
+  - id: cardhouse
+    kind: object
+    subject_point:
+    - 0.1
+    - 0.7
+    label_box:
+    - 0.03
+    - 0.08
+    - 0.24
+    - 0.05
+  - id: builder
+    kind: figure
+    subject_point:
+    - 0.5
+    - 0.3
+    label_box:
+    - 0.7
+    - 0.1
+    - 0.26
+    - 0.05
+  - id: hand-card
+    kind: object
+    subject_point:
+    - 0.31
+    - 0.64
+    label_box:
+    - 0.6
+    - 0.8
+    - 0.28
+    - 0.05
+  uses:
+  - structure: fragile-edifice
+    bindings:
+      the-edifice: cardhouse
+      the-load-bearing-detail: hand-card
+- id: ciseri-eccehomo
+  title: Ecce Homo
+  artist: Antonio Ciseri
+  date: c. 1871
+  source:
+    provider: commons
+    asset: File:Ecce homo by Antonio Ciseri (1).jpg
+    rights: public-domain
+  image: images/ciseri-eccehomo.jpg
+  what_is_happening: Pilate presents Christ to a roaring crowd below; the accused
+    stands perfectly still
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - deadpan
+  - dark
+  - wry
+  targets:
+  - id: christ
+    kind: figure
+    subject_point:
+    - 0.36
+    - 0.4
+    label_box:
+    - 0.02
+    - 0.05
+    - 0.22
+    - 0.06
+  - id: pilate
+    kind: figure
+    subject_point:
+    - 0.55
+    - 0.5
+    label_box:
+    - 0.4
+    - 0.05
+    - 0.22
+    - 0.05
+  - id: crowd
+    kind: group
+    subject_point:
+    - 0.6
+    - 0.72
+    label_box:
+    - 0.72
+    - 0.92
+    - 0.25
+    - 0.05
+  uses:
+  - structure: accusation-vs-indifference
+    bindings:
+      the-accuser: crowd
+      the-indifferent: christ
+- id: david-marat
+  title: The Death of Marat
+  artist: Jacques-Louis David
+  date: 1793
+  source:
+    provider: commons
+    asset: File:Death of Marat by David.jpg
+    rights: public-domain
+  image: images/david-marat.jpg
+  what_is_happening: a man lies dead in his bath, still holding the letter he was
+    working on
+  legible_in_2s: true
+  content_flags:
+  - violence-aftermath
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - deadpan
+  targets:
+  - id: marat
+    kind: figure
+    subject_point:
+    - 0.18
+    - 0.4
+    label_box:
+    - 0.04
+    - 0.06
+    - 0.28
+    - 0.06
+  - id: letter
+    kind: object
+    subject_point:
+    - 0.73
+    - 0.5
+    label_box:
+    - 0.62
+    - 0.3
+    - 0.3
+    - 0.06
+  - id: knife
+    kind: object
+    subject_point:
+    - 0.135
+    - 0.95
+    label_box:
+    - 0.28
+    - 0.92
+    - 0.26
+    - 0.05
+  uses:
+  - structure: struck-down-mid-work
+    bindings:
+      the-fallen: marat
+      the-final-message: letter
+- id: delaroche-janegrey
+  title: The Execution of Lady Jane Grey
+  artist: Paul Delaroche
+  date: 1833
+  source:
+    provider: commons
+    asset: File:PAUL DELAROCHE - Ejecución de Lady Jane Grey (National Gallery de
+      Londres, 1834).jpg
+    rights: public-domain
+  image: images/delaroche-janegrey.jpg
+  what_is_happening: the blindfolded condemned feels for the block while the executioner
+    waits and the attendants cannot watch
+  legible_in_2s: true
+  content_flags:
+  - violence
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  targets:
+  - id: jane
+    kind: figure
+    subject_point:
+    - 0.44
+    - 0.4
+    label_box:
+    - 0.03
+    - 0.05
+    - 0.24
+    - 0.06
+  - id: executioner
+    kind: figure
+    subject_point:
+    - 0.82
+    - 0.3
+    label_box:
+    - 0.7
+    - 0.04
+    - 0.24
+    - 0.05
+  - id: block
+    kind: object
+    subject_point:
+    - 0.455
+    - 0.73
+    label_box:
+    - 0.7
+    - 0.9
+    - 0.27
+    - 0.05
+  - id: mourners
+    kind: group
+    subject_point:
+    - 0.2
+    - 0.42
+    label_box:
+    - 0.02
+    - 0.9
+    - 0.24
+    - 0.05
+  uses:
+  - structure: the-reckoning
+    bindings:
+      the-condemned: jane
+      the-squad: executioner
+- id: fragonard-swing
+  title: The Swing
+  artist: Jean-Honoré Fragonard
+  date: 1767
+  source:
+    provider: commons
+    asset: File:Joean Honoré Fragonard - The Swing.jpg
+    rights: public-domain
+  image: images/fragonard-swing.jpg
+  what_is_happening: a young woman swings gaily while a hidden admirer gazes up her
+    skirts and an old man works the ropes, oblivious
+  legible_in_2s: true
+  content_flags:
+  - suggestive
+  content_intensity: mild
+  comic_registers:
+  - light
+  - wry
+  - absurdist
+  targets:
+  - id: swinger
+    kind: figure
+    subject_point:
+    - 0.555
+    - 0.55
+    label_box:
+    - 0.3
+    - 0.04
+    - 0.3
+    - 0.06
+  - id: admirer
+    kind: figure
+    subject_point:
+    - 0.13
+    - 0.74
+    label_box:
+    - 0.03
+    - 0.9
+    - 0.26
+    - 0.06
+  - id: pusher
+    kind: figure
+    subject_point:
+    - 0.865
+    - 0.68
+    label_box:
+    - 0.7
+    - 0.9
+    - 0.27
+    - 0.06
+  uses:
+  - structure: temptation-triangle
+    bindings:
+      the-distracted: admirer
+      the-temptation: swinger
+      the-neglected: pusher
+- id: friedrich-wanderer
+  title: Wanderer above the Sea of Fog
+  artist: Caspar David Friedrich
+  date: 1818
+  source:
+    provider: commons
+    asset: File:Caspar David Friedrich - Wanderer above the sea of fog.jpg
+    rights: public-domain
+  image: images/friedrich-wanderer.jpg
+  what_is_happening: a lone figure stands on a peak surveying an endless sea of fog
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - light
+  - wry
+  - grandiose
+  targets:
+  - id: wanderer
+    kind: figure
+    subject_point:
+    - 0.5
+    - 0.45
+    label_box:
+    - 0.06
+    - 0.88
+    - 0.36
+    - 0.07
+  - id: expanse
+    kind: region
+    subject_point:
+    - 0.25
+    - 0.52
+    label_box:
+    - 0.05
+    - 0.07
+    - 0.34
+    - 0.07
+  uses:
+  - structure: the-survey
+    bindings:
+      the-surveyor: wanderer
+      the-expanse: expanse
+- id: fuseli-nightmare
+  title: The Nightmare
+  artist: Henry Fuseli
+  date: 1781
+  source:
+    provider: commons
+    asset: File:John Henry Fuseli - The NightmareFXD.jpg
+    rights: public-domain
+  image: images/fuseli-nightmare.jpg
+  what_is_happening: a demon squats on a sleeping woman's chest while a mad-eyed horse
+    watches
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - absurdist
+  - wry
+  targets:
+  - id: sleeper
+    kind: figure
+    subject_point:
+    - 0.72
+    - 0.62
+    label_box:
+    - 0.04
+    - 0.86
+    - 0.36
+    - 0.08
+  - id: incubus
+    kind: figure
+    subject_point:
+    - 0.63
+    - 0.16
+    label_box:
+    - 0.04
+    - 0.06
+    - 0.34
+    - 0.08
+  - id: horse
+    kind: figure
+    subject_point:
+    - 0.26
+    - 0.22
+    label_box:
+    - 0.04
+    - 0.36
+    - 0.24
+    - 0.07
+  uses:
+  - structure: the-haunting
+    bindings:
+      the-sleeper: sleeper
+      the-incubus: incubus
+- id: gentileschi-judith
+  title: Judith Beheading Holofernes
+  artist: Artemisia Gentileschi
+  date: c. 1612-1613
+  source:
+    provider: commons
+    asset: File:Artemisia Gentileschi - Judith Beheading Holofernes - WGA8563.jpg
+    rights: public-domain
+  image: images/gentileschi-judith.jpg
+  what_is_happening: two women pin a man down and saw his head off with workmanlike
+    focus
+  legible_in_2s: true
+  content_flags:
+  - graphic-violence
+  - gore
+  content_intensity: grotesque
+  comic_registers:
+  - dark
+  - deadpan
+  targets:
+  - id: judith
+    kind: figure
+    subject_point:
+    - 0.8
+    - 0.2
+    label_box:
+    - 0.68
+    - 0.04
+    - 0.29
+    - 0.07
+  - id: holofernes
+    kind: figure
+    subject_point:
+    - 0.38
+    - 0.62
+    label_box:
+    - 0.03
+    - 0.88
+    - 0.3
+    - 0.07
+  - id: maid
+    kind: figure
+    subject_point:
+    - 0.33
+    - 0.1
+    label_box:
+    - 0.03
+    - 0.3
+    - 0.24
+    - 0.06
+  uses:
+  - structure: grim-necessary-work
+    bindings:
+      the-executor: judith
+      the-task: holofernes
+- id: gericault-medusa
+  title: The Raft of the Medusa
+  artist: Théodore Géricault
+  date: 1818-1819
+  source:
+    provider: commons
+    asset: File:JEAN LOUIS THÉODORE GÉRICAULT - La Balsa de la Medusa (Museo del Louvre,
+      1818-19).jpg
+    rights: public-domain
+  image: images/gericault-medusa.jpg
+  what_is_happening: shipwreck survivors on a raft wave desperately at a tiny ship
+    on the horizon
+  legible_in_2s: true
+  content_flags:
+  - violence-aftermath
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - hyperbolic
+  targets:
+  - id: wavers
+    kind: group
+    subject_point:
+    - 0.7
+    - 0.25
+    label_box:
+    - 0.75
+    - 0.04
+    - 0.22
+    - 0.06
+  - id: ship
+    kind: object
+    subject_point:
+    - 0.875
+    - 0.405
+    label_box:
+    - 0.78
+    - 0.5
+    - 0.19
+    - 0.05
+  - id: despair
+    kind: figure
+    subject_point:
+    - 0.28
+    - 0.62
+    label_box:
+    - 0.02
+    - 0.88
+    - 0.24
+    - 0.06
+  uses:
+  - structure: the-distant-hope
+    bindings:
+      the-desperate: wavers
+      the-far-salvation: ship
+- id: goya-colossus
+  title: The Colossus
+  artist: Francisco Goya (attr.)
+  date: c. 1808-1812
+  source:
+    provider: commons
+    asset: File:The Colossus, Francisco de Goya.jpg
+    rights: public-domain
+  image: images/goya-colossus.jpg
+  what_is_happening: a giant rises over the horizon while a valley of tiny figures
+    flees in every direction
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - hyperbolic
+  - absurdist
+  targets:
+  - id: giant
+    kind: figure
+    subject_point:
+    - 0.4
+    - 0.22
+    label_box:
+    - 0.68
+    - 0.06
+    - 0.28
+    - 0.06
+  - id: crowd
+    kind: group
+    subject_point:
+    - 0.28
+    - 0.82
+    label_box:
+    - 0.68
+    - 0.88
+    - 0.28
+    - 0.06
+  uses:
+  - structure: the-looming
+    bindings:
+      the-looming-thing: giant
+      the-fleeing: crowd
+- id: goya-saturn
+  title: Saturn Devouring His Son
+  artist: Francisco Goya
+  date: 1820-1823
+  source:
+    provider: commons
+    asset: File:Francisco de Goya, Saturno devorando a su hijo (1819-1823).jpg
+    rights: public-domain
+  image: images/goya-saturn.jpg
+  what_is_happening: a giant frantically eats a human body
+  legible_in_2s: true
+  content_flags:
+  - graphic-violence
+  content_intensity: grotesque
+  comic_registers:
+  - dark
+  - hyperbolic
+  - absurdist
+  targets:
+  - id: saturn
+    kind: figure
+    subject_point:
+    - 0.45
+    - 0.22
+    label_box:
+    - 0.04
+    - 0.05
+    - 0.42
+    - 0.08
+  - id: victim
+    kind: figure
+    subject_point:
+    - 0.55
+    - 0.42
+    label_box:
+    - 0.58
+    - 0.55
+    - 0.38
+    - 0.07
+  uses:
+  - structure: feral-consumption
+    bindings:
+      the-consumer: saturn
+      the-consumed: victim
+  - structure: self-destruction
+    bindings:
+      the-actor: saturn
+      the-damaged-self: victim
+- id: goya-thirdmay
+  title: The Third of May 1808
+  artist: Francisco Goya
+  date: 1814
+  source:
+    provider: commons
+    asset: File:El Tres de Mayo, by Francisco de Goya, from Prado thin black margin.jpg
+    rights: public-domain
+  image: images/goya-thirdmay.jpg
+  what_is_happening: a man in a white shirt throws his arms wide before a faceless
+    firing squad
+  legible_in_2s: true
+  content_flags:
+  - graphic-violence
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - hyperbolic
+  targets:
+  - id: condemned
+    kind: figure
+    subject_point:
+    - 0.33
+    - 0.44
+    label_box:
+    - 0.03
+    - 0.05
+    - 0.28
+    - 0.06
+  - id: squad
+    kind: group
+    subject_point:
+    - 0.72
+    - 0.5
+    label_box:
+    - 0.7
+    - 0.08
+    - 0.27
+    - 0.06
+  uses:
+  - structure: the-reckoning
+    bindings:
+      the-condemned: condemned
+      the-squad: squad
+- id: homer-gulfstream
+  title: The Gulf Stream
+  artist: Winslow Homer
+  date: 1899
+  source:
+    provider: commons
+    asset: File:Winslow Homer - The Gulf Stream - Metropolitan Museum of Art.jpg
+    rights: public-domain
+  image: images/homer-gulfstream.jpg
+  what_is_happening: a man reclines almost nonchalantly on a dismasted boat while
+    sharks circle and a ship passes far away
+  legible_in_2s: true
+  content_flags:
+  - animal-peril
+  content_intensity: moderate
+  comic_registers:
+  - wry
+  - deadpan
+  - dark
+  targets:
+  - id: sailor
+    kind: figure
+    subject_point:
+    - 0.6
+    - 0.4
+    label_box:
+    - 0.55
+    - 0.05
+    - 0.2
+    - 0.05
+  - id: sharks
+    kind: group
+    subject_point:
+    - 0.47
+    - 0.76
+    label_box:
+    - 0.02
+    - 0.9
+    - 0.24
+    - 0.05
+  - id: rescue-ship
+    kind: object
+    subject_point:
+    - 0.235
+    - 0.115
+    label_box:
+    - 0.32
+    - 0.2
+    - 0.22
+    - 0.05
+  uses:
+  - structure: denial-amid-disaster
+    bindings:
+      the-oblivious: sailor
+      the-disaster: sharks
+  - structure: the-distant-hope
+    bindings:
+      the-desperate: sailor
+      the-far-salvation: rescue-ship
+- id: latour-cheat
+  title: The Cheat with the Ace of Diamonds
+  artist: Georges de La Tour
+  date: c. 1636-1638
+  source:
+    provider: commons
+    asset: File:Le Tricheur à l'as de carreau - Georges de La Tour - Musée du Louvre
+      Peintures RF 1972 8.jpg
+    rights: public-domain
+  image: images/latour-cheat.jpg
+  what_is_happening: a card cheat pulls an ace from behind his back while the whole
+    table trades sideways glances around an oblivious mark
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - wry
+  - deadpan
+  targets:
+  - id: cheat
+    kind: figure
+    subject_point:
+    - 0.17
+    - 0.35
+    label_box:
+    - 0.02
+    - 0.06
+    - 0.24
+    - 0.07
+  - id: ace
+    kind: object
+    subject_point:
+    - 0.06
+    - 0.71
+    label_box:
+    - 0.16
+    - 0.79
+    - 0.22
+    - 0.06
+  - id: courtesan
+    kind: figure
+    subject_point:
+    - 0.6
+    - 0.35
+    label_box:
+    - 0.55
+    - 0.04
+    - 0.26
+    - 0.06
+  - id: mark
+    kind: figure
+    subject_point:
+    - 0.87
+    - 0.38
+    label_box:
+    - 0.72
+    - 0.88
+    - 0.25
+    - 0.07
+  uses:
+  - structure: the-hustle
+    bindings:
+      the-hustler: cheat
+      the-mark: mark
+- id: martin-wrath
+  title: The Great Day of His Wrath
+  artist: John Martin
+  date: 1851-1853
+  source:
+    provider: commons
+    asset: File:John Martin - The Great Day of His Wrath - Google Art Project.jpg
+    rights: public-domain
+  image: images/martin-wrath.jpg
+  what_is_happening: mountains fold over a burning abyss while tiny figures tumble
+    at the edges
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - hyperbolic
+  - absurdist
+  targets:
+  - id: doom
+    kind: region
+    subject_point:
+    - 0.68
+    - 0.42
+    label_box:
+    - 0.38
+    - 0.06
+    - 0.24
+    - 0.06
+  - id: fleeing
+    kind: group
+    subject_point:
+    - 0.27
+    - 0.9
+    label_box:
+    - 0.5
+    - 0.93
+    - 0.24
+    - 0.05
+  uses:
+  - structure: the-looming
+    bindings:
+      the-looming-thing: doom
+      the-fleeing: fleeing
+- id: millais-ophelia
+  title: Ophelia
+  artist: John Everett Millais
+  date: 1851-1852
+  source:
+    provider: commons
+    asset: File:John Everett Millais - Ophelia - Google Art Project.jpg
+    rights: public-domain
+  image: images/millais-ophelia.jpg
+  what_is_happening: she drifts downstream still singing, hands open, entirely at
+    peace with what is happening
+  legible_in_2s: true
+  content_flags:
+  - death
+  content_intensity: mild
+  comic_registers:
+  - wry
+  - dark
+  - light
+  targets:
+  - id: ophelia
+    kind: figure
+    subject_point:
+    - 0.255
+    - 0.58
+    label_box:
+    - 0.02
+    - 0.9
+    - 0.22
+    - 0.05
+  - id: stream
+    kind: region
+    subject_point:
+    - 0.72
+    - 0.6
+    label_box:
+    - 0.72
+    - 0.9
+    - 0.25
+    - 0.05
+  uses:
+  - structure: denial-amid-disaster
+    bindings:
+      the-oblivious: ophelia
+      the-disaster: stream
+- id: munch-scream
+  title: The Scream
+  artist: Edvard Munch
+  date: 1893
+  source:
+    provider: commons
+    asset: File:Edvard Munch, 1893, The Scream, oil, tempera and pastel on cardboard,
+      91 x 73 cm, National Gallery of Norway.jpg
+    rights: public-domain
+  image: images/munch-scream.jpg
+  what_is_happening: a figure clutches its face and screams while two others stroll
+    on unbothered
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: mild
+  comic_registers:
+  - light
+  - wry
+  - hyperbolic
+  targets:
+  - id: screamer
+    kind: figure
+    subject_point:
+    - 0.52
+    - 0.55
+    label_box:
+    - 0.05
+    - 0.88
+    - 0.38
+    - 0.07
+  - id: bystanders
+    kind: group
+    subject_point:
+    - 0.09
+    - 0.42
+    label_box:
+    - 0.04
+    - 0.06
+    - 0.3
+    - 0.06
+  uses:
+  - structure: the-overwhelm
+    bindings:
+      the-overwhelmed: screamer
+- id: rembrandt-belshazzar
+  title: Belshazzar's Feast
+  artist: Rembrandt
+  date: c. 1636-1638
+  source:
+    provider: commons
+    asset: File:Rembrandt-Belsazar.jpg
+    rights: public-domain
+  image: images/rembrandt-belshazzar.jpg
+  what_is_happening: a king mid-feast whirls in terror at glowing writing appearing
+    on the wall
+  legible_in_2s: true
+  content_flags:
+  - religious-imagery
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - hyperbolic
+  - deadpan
+  targets:
+  - id: celebrant
+    kind: figure
+    subject_point:
+    - 0.47
+    - 0.28
+    label_box:
+    - 0.04
+    - 0.04
+    - 0.28
+    - 0.07
+  - id: writing
+    kind: region
+    subject_point:
+    - 0.74
+    - 0.13
+    label_box:
+    - 0.4
+    - 0.03
+    - 0.18
+    - 0.06
+  - id: court
+    kind: group
+    subject_point:
+    - 0.24
+    - 0.42
+    label_box:
+    - 0.02
+    - 0.68
+    - 0.22
+    - 0.06
+  uses:
+  - structure: unheeded-warning
+    bindings:
+      the-prophet: writing
+      the-deaf-audience: celebrant
+  - structure: premature-celebration
+    bindings:
+      the-celebrant: celebrant
+      the-unfinished-business: writing
+- id: rembrandt-tulp
+  title: The Anatomy Lesson of Dr Nicolaes Tulp
+  artist: Rembrandt
+  date: 1632
+  source:
+    provider: commons
+    asset: File:Rembrandt - The Anatomy Lesson of Dr Nicolaes Tulp.jpg
+    rights: public-domain
+  image: images/rembrandt-tulp.jpg
+  what_is_happening: the doctor demonstrates on the corpse while colleagues lean in
+    with intense professional interest
+  legible_in_2s: true
+  content_flags:
+  - graphic-violence
+  content_intensity: moderate
+  comic_registers:
+  - deadpan
+  - dark
+  - wry
+  targets:
+  - id: tulp
+    kind: figure
+    subject_point:
+    - 0.7
+    - 0.35
+    label_box:
+    - 0.72
+    - 0.06
+    - 0.25
+    - 0.06
+  - id: corpse
+    kind: figure
+    subject_point:
+    - 0.5
+    - 0.73
+    label_box:
+    - 0.03
+    - 0.9
+    - 0.24
+    - 0.05
+  - id: students
+    kind: group
+    subject_point:
+    - 0.4
+    - 0.38
+    label_box:
+    - 0.03
+    - 0.05
+    - 0.24
+    - 0.06
+  uses:
+  - structure: the-live-demo
+    bindings:
+      the-demonstrator: tulp
+      the-subject: corpse
+      the-mourners: students
+- id: repin-ivan
+  title: Ivan the Terrible and His Son Ivan
+  artist: Ilya Repin
+  date: 1885
+  source:
+    provider: commons
+    asset: File:Moscou, galerie Tretiakov Ivan le Terrible et son fils, par Ilya Repine.jpg
+    rights: public-domain
+  image: images/repin-ivan.jpg
+  what_is_happening: a wild-eyed man clutches the son he has just struck down, instantly
+    and totally regretful
+  legible_in_2s: true
+  content_flags:
+  - graphic-violence
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - hyperbolic
+  targets:
+  - id: actor
+    kind: figure
+    subject_point:
+    - 0.47
+    - 0.3
+    label_box:
+    - 0.04
+    - 0.05
+    - 0.3
+    - 0.07
+  - id: consequence
+    kind: figure
+    subject_point:
+    - 0.55
+    - 0.46
+    label_box:
+    - 0.6
+    - 0.86
+    - 0.34
+    - 0.07
+  uses:
+  - structure: self-destruction
+    bindings:
+      the-actor: actor
+      the-damaged-self: consequence
+- id: rubens-phaeton
+  title: The Fall of Phaeton
+  artist: Peter Paul Rubens
+  date: c. 1604-1605
+  source:
+    provider: commons
+    asset: File:Peter Paul Rubens - The Fall of Phaeton (National Gallery of Art).jpg
+    rights: public-domain
+  image: images/rubens-phaeton.jpg
+  what_is_happening: Phaeton loses control of the sun chariot and plunges; horses
+    scatter as the light itself breaks apart
+  legible_in_2s: true
+  content_flags:
+  - nudity
+  content_intensity: mild
+  comic_registers:
+  - hyperbolic
+  - dark
+  targets:
+  - id: phaeton
+    kind: figure
+    subject_point:
+    - 0.62
+    - 0.64
+    label_box:
+    - 0.02
+    - 0.9
+    - 0.24
+    - 0.06
+  - id: rays
+    kind: region
+    subject_point:
+    - 0.6
+    - 0.08
+    label_box:
+    - 0.72
+    - 0.05
+    - 0.25
+    - 0.06
+  uses:
+  - structure: hubris-before-fall
+    bindings:
+      the-ascendant: phaeton
+      the-ignored-limit: rays
+- id: titian-sisyphus
+  title: Sisyphus
+  artist: Titian
+  date: 1548-1549
+  source:
+    provider: commons
+    asset: File:Titian - Sisyphus - Madrid - Prado.jpg
+    rights: public-domain
+  image: images/titian-sisyphus.jpg
+  what_is_happening: Sisyphus hauls an enormous boulder up a hellish slope, head bowed
+    under its weight
+  legible_in_2s: true
+  content_flags: []
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - wry
+  - hyperbolic
+  targets:
+  - id: sisyphus
+    kind: figure
+    subject_point:
+    - 0.5
+    - 0.6
+    label_box:
+    - 0.03
+    - 0.9
+    - 0.26
+    - 0.05
+  - id: boulder
+    kind: object
+    subject_point:
+    - 0.58
+    - 0.14
+    label_box:
+    - 0.03
+    - 0.06
+    - 0.24
+    - 0.06
+  uses:
+  - structure: the-eternal-task
+    bindings:
+      the-laborer: sisyphus
+      the-burden: boulder
+- id: wright-airpump
+  title: An Experiment on a Bird in the Air Pump
+  artist: Joseph Wright of Derby
+  date: 1768
+  source:
+    provider: commons
+    asset: File:An Experiment on a Bird in an Air Pump by Joseph Wright of Derby,
+      1768.jpg
+    rights: public-domain
+  image: images/wright-airpump.jpg
+  what_is_happening: a demonstrator suffocates a bird in a vacuum jar while onlookers
+    react with fascination, grief, and indifference
+  legible_in_2s: true
+  content_flags:
+  - animal-peril
+  content_intensity: moderate
+  comic_registers:
+  - dark
+  - wry
+  - deadpan
+  targets:
+  - id: experimenter
+    kind: figure
+    subject_point:
+    - 0.39
+    - 0.28
+    label_box:
+    - 0.04
+    - 0.05
+    - 0.28
+    - 0.07
+  - id: bird
+    kind: figure
+    subject_point:
+    - 0.51
+    - 0.27
+    label_box:
+    - 0.57
+    - 0.05
+    - 0.26
+    - 0.06
+  - id: mourners
+    kind: group
+    subject_point:
+    - 0.63
+    - 0.52
+    label_box:
+    - 0.45
+    - 0.88
+    - 0.22
+    - 0.06
+  uses:
+  - structure: the-live-demo
+    bindings:
+      the-demonstrator: experimenter
+      the-subject: bird
+      the-mourners: mourners

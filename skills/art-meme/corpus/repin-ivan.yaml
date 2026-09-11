@@ -1,0 +1,44 @@
+id: repin-ivan
+title: Ivan the Terrible and His Son Ivan
+artist: Ilya Repin
+date: 1885
+source:
+  provider: commons
+  asset: File:Moscou, galerie Tretiakov Ivan le Terrible et son fils, par Ilya Repine.jpg
+  rights: public-domain
+image: images/repin-ivan.jpg
+what_is_happening: a wild-eyed man clutches the son he has just struck down, instantly
+  and totally regretful
+legible_in_2s: true
+content_flags:
+- graphic-violence
+content_intensity: moderate
+comic_registers:
+- dark
+- hyperbolic
+targets:
+- id: actor
+  kind: figure
+  subject_point:
+  - 0.47
+  - 0.3
+  label_box:
+  - 0.04
+  - 0.05
+  - 0.3
+  - 0.07
+- id: consequence
+  kind: figure
+  subject_point:
+  - 0.55
+  - 0.46
+  label_box:
+  - 0.6
+  - 0.86
+  - 0.34
+  - 0.07
+uses:
+- structure: self-destruction
+  bindings:
+    the-actor: actor
+    the-damaged-self: consequence

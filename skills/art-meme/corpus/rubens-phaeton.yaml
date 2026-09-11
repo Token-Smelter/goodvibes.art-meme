@@ -1,0 +1,44 @@
+id: rubens-phaeton
+title: The Fall of Phaeton
+artist: Peter Paul Rubens
+date: c. 1604-1605
+source:
+  provider: commons
+  asset: File:Peter Paul Rubens - The Fall of Phaeton (National Gallery of Art).jpg
+  rights: public-domain
+image: images/rubens-phaeton.jpg
+what_is_happening: Phaeton loses control of the sun chariot and plunges; horses scatter
+  as the light itself breaks apart
+legible_in_2s: true
+content_flags:
+- nudity
+content_intensity: mild
+comic_registers:
+- hyperbolic
+- dark
+targets:
+- id: phaeton
+  kind: figure
+  subject_point:
+  - 0.62
+  - 0.64
+  label_box:
+  - 0.02
+  - 0.9
+  - 0.24
+  - 0.06
+- id: rays
+  kind: region
+  subject_point:
+  - 0.6
+  - 0.08
+  label_box:
+  - 0.72
+  - 0.05
+  - 0.25
+  - 0.06
+uses:
+- structure: hubris-before-fall
+  bindings:
+    the-ascendant: phaeton
+    the-ignored-limit: rays
