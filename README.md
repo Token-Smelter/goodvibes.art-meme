@@ -1,10 +1,12 @@
 # [GoodVibes] Art Meme
 
-Turn a conversation moment into a fine-art meme: a public-domain painting, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/Token-Smelter)**.
+Describe a situation. Get the painting that already knew: a public-domain artwork, short labels, and a museum-style credit strip. An agent skill from **Good Vibes by [TokenSmelter](https://github.com/Token-Smelter)**.
+
+The situation can be anything with participants and a tension between them — something that just happened in your session, a hypothetical, your team's predicament, an entire industry's problem, or a mood.
 
 ```mermaid
 flowchart LR
-    Moment["Your conversation"] --> Match["Match an emotional structure"]
+    Situation["Any situation"] --> Match["Match an emotional structure"]
     Match --> Pick["Choose an artwork or abstain"]
     Pick --> Image["Fetch the recorded source and cache it"]
     Image --> Render["Labels + artwork + credit"]
@@ -39,9 +41,9 @@ uv run tools/build_skill.py
 
 Then ask your agent:
 
-> Make a fine-art meme of me dealing with the weekly status report.
+> Make a fine-art meme about our company spending millions on AI while every output still waits on a handful of reviewers.
 
-The agent chooses from the curated corpus, inspects the image, writes labels, and renders a JPEG. If no painting fits, it should say so rather than force a joke. Invoke it explicitly; it does not post messages or publish images for you.
+The agent distills the situation, chooses from the curated corpus, inspects the image, writes labels naming the real participants, and renders a JPEG. If no painting fits, it should say so rather than force a joke. Invoke it explicitly; it does not post messages or publish images for you.
 
 ## Try the renderer directly
 
