@@ -170,6 +170,17 @@ class ImageDistributionTests(unittest.TestCase):
             "scripts/get_image.py", "scripts/match.py", "scripts/render.py",
         ])
 
+    def test_rebuilding_reproduces_identical_bytes(self):
+        """A timestamp here would dirty the committed package every day."""
+        def snapshot(skill):
+            return {p.relative_to(skill).as_posix(): p.read_bytes()
+                    for p in skill.rglob("*") if p.is_file()}
+
+        first = snapshot(self.build())
+        with patch.object(build_skill, "REPO", self.root), contextlib.redirect_stdout(io.StringIO()):
+            build_skill.main()
+        self.assertEqual(snapshot(self.root / "skills" / build_skill.SKILL_NAME), first)
+
     def test_build_preserves_license_notice_in_shared_package(self):
         skill = self.build()
         self.assertEqual((skill / "LICENSE").read_bytes(), (PROJECT / "LICENSE").read_bytes())

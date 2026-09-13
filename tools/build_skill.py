@@ -12,7 +12,6 @@ the repository installs directly as an Agent Plugin — never hand-edit it.
 import json
 import shutil
 import sys
-from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -87,8 +86,9 @@ def main():
     for w in works:
         (tmp / "corpus" / f"{w['id']}.yaml").write_text(
             yaml.safe_dump(w, sort_keys=False, allow_unicode=True))
+    # No build timestamp: it would change the committed package every day and
+    # turn a drift check into a date check. Git records when this was built.
     (tmp / "index.yaml").write_text(yaml.safe_dump({
-        "generated": datetime.now(UTC).date().isoformat(),
         "structures": list(structures.values()),
         "works": works,
     }, sort_keys=False, allow_unicode=True))

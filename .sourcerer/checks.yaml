@@ -1,0 +1,48 @@
+api_version: sourcerer.project-checks/v1
+
+# Per-check commands for art-meme. All three are non-mutating and match what
+# the README's "Check" section documents.
+#
+# build: regenerating skills/art-meme/ IS this project's build. It validates
+#   the corpus (structures resolve, bindings cover their roles, sources name
+#   exact downloadable files) and rewrites the generated package. It writes
+#   only into skills/art-meme/, which is committed, so a candidate whose
+#   generated package drifts from its authoring sources shows up as a dirty
+#   worktree rather than passing silently.
+#
+# tests: the unittest battery, including image-distribution behavior (offline
+#   cache reuse, corrupt-cache rejection, rights gating) and plugin packaging
+#   conformance. Tests use generated fixtures and a temporary cache; they
+#   never download artwork, so this stays hermetic and offline-safe.
+#
+# lint: ruff over the authoring tools and tests. E402 is ignored because
+#   render.py and the test module intentionally import after adjusting
+#   sys.path to reach sibling modules.
+overrides:
+  build:
+    command: "uv run tools/build_skill.py"
+    input_paths:
+      - "corpus/**"
+      - "structures.yaml"
+      - "tools/**"
+      - "LICENSE"
+    timeout_seconds: 180
+
+  tests:
+    command: "uv run --with pillow --with pyyaml python -m unittest discover -s tests"
+    input_paths:
+      - "tests/**"
+      - "tools/**"
+      - "corpus/**"
+      - "structures.yaml"
+      - "plugin.json"
+      - ".claude-plugin/**"
+      - "skills/**"
+    timeout_seconds: 300
+
+  lint:
+    command: "uvx ruff check tools tests --ignore E402"
+    input_paths:
+      - "tools/**"
+      - "tests/**"
+    timeout_seconds: 120
